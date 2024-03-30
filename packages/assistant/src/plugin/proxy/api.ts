@@ -428,28 +428,6 @@ async function getRkl() {
     log.success('获取天行绕口令失败', error)
   }
 }
-// /**
-//  * 天行短连接
-//  */
-// async function getShortUrl(url) {
-//   try {
-//     let option = {
-//       method: 'GET',
-//       url: '/txapi/turl/',
-//       params: { url: url },
-//     }
-//     let content = await txReq(option)
-//     if (content.code === 200) {
-//       let item = content.newslist[0]
-//       let shorturl = item.shorturl
-//       return shorturl
-//     }  else {
-//       log.success('获取短链接口失败', content.msg)
-//     }
-//   } catch (error) {
-//     log.success('获取天行短连接失败', error)
-//   }
-// }
 /**
  * 获取自定义头像
  * @param {*} base

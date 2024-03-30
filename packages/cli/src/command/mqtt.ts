@@ -1,9 +1,8 @@
-const aedes = require('aedes')
-const net = require('net')
-const {
-  Level
-} = require('level')
-const aedesPersistencelevel = require('aedes-persistence-level')
+import aedes from 'aedes'
+import net from 'net'
+import { Level } from 'level'
+import aedesPersistencelevel from 'aedes-persistence-level'
+
 //我只用到三个配置项，其他配置项有需要可以自行配置
 const aedesApp = new aedes({
   persistence: aedesPersistencelevel(new Level('./mydb')),

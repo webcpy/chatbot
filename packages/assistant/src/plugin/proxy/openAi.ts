@@ -2,7 +2,7 @@
 import OfficialOpenAi from "../botInstance/officialOpenAi.js";
 import { BinaryLike } from "crypto";
 import { Container } from 'typedi'
-import { BaseConfig } from '../db/repositories/BaseConfig'
+import { BaseConfig } from '../db/repositories/BaseConfig.js'
 
 let chatGPT: OfficialOpenAi | null = null;
 /**

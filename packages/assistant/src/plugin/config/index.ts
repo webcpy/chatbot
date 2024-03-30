@@ -12,6 +12,4 @@ config.getEnv = config.get;
 config.validate({
 	allowed: 'strict',
 });
-
-
 export default config

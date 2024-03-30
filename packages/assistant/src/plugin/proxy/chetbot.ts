@@ -6,7 +6,7 @@ import { BaseConfig } from '../db/repositories/BaseConfig'
 import { Rss } from '../db/repositories/rssConfig'
 import log from '../utils/npmlog'
 import { get } from 'lodash'
-import { service } from '../proxy/superagent'
+import { service } from './superagent'
 
 /**
  * 获取美女图片

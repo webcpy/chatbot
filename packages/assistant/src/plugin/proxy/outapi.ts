@@ -1,6 +1,4 @@
 import axios from 'axios'
-// import { allConfig } from '../db/configDb.js'
-// import { AIBOTK_OUTAPI } from './config.js'
 import globalConfig from '../config'
 import { Container } from 'typedi'
 import { BaseConfig } from '../db/repositories/BaseConfig'

@@ -1,5 +1,5 @@
 import OfficialOpenAi from "../../botInstance/officialOpenAi.js";
-import { getPromotInfo } from "../chetbot";
+import { getPromotInfo } from "../chetbot.js";
 
 let chatGPT: any = {}
 

@@ -95,7 +95,6 @@ export class Start extends BaseCommand {
   }
 
   async run() {
-    // const { flags } = await this.parse(Start);
     await this.app.run();
     this.spinner.succeed('启动成功');
     const localIp = this.getLocalIP()[0];

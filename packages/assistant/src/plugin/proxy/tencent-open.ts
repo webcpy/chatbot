@@ -168,7 +168,7 @@ async function getFormatReply(answer: any, options = [], _userInfo: any) {
       break;
     case "miniprogrampage":
       if (!isNotWeb) {
-        replys = [{ type: 1, content: "收到了一个小程序，但是小秘书还没学会展示😭，等等我回去再修炼五百年💪" }];
+        replys = [{ type: 1, content: "收到了一个小程序，但是小管家还没学会展示😭，等等我回去再修炼五百年💪" }];
       } else {
         replys = [{
           type: 5,

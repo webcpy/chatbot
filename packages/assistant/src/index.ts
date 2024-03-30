@@ -11,7 +11,6 @@ let workProToken = config.get('token.work') // 如果申请了企业微信的tok
 if (padLocalToken) {
   log.success('读取到环境变量中的ipadLocalToken')
   log.success('读取到环境变量中的ipad token 使用ipad协议启动')
-
   bot = WechatyBuilder.build({
     name, // generate xxxx.memory-card.json and save login data for the next login
     puppetOptions: {
@@ -35,7 +34,7 @@ if (padLocalToken) {
   log.success('默认使用wechat4u协议启动')
 
   bot = WechatyBuilder.build({
-    name, // generate xxxx.memory-card.json and save login data for the next login
+    name,
     puppet: 'wechaty-puppet-wechat4u'
   })
 }
@@ -47,4 +46,3 @@ bot.use(
   })
 )
 bot.start().catch((e: any) => log.fail(e))
-

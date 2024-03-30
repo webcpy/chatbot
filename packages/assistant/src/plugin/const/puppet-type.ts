@@ -1,7 +1,6 @@
 import { Container } from 'typedi';
 import { PuppetConfig } from '../db/repositories/Puppet'
 
-
 export const PUPPET_MAP: any = {
   // https://github.com/wechaty/puppet-wechat4u
   'PuppetWechat4u': '基于wechat4u的网页版api协议',
