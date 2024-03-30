@@ -1,0 +1,49 @@
+{
+	// TypeScript 编译器选项
+	"compilerOptions": {
+		// 启用所有严格类型检查选项
+		"strict": true,
+		// 指定生成的 JavaScript 模块格式为 CommonJS
+		"module": "commonjs",
+		// 指定模块解析策略为 Node.js 的模块解析方式
+		"moduleResolution": "node",
+		// 指定 TypeScript 编译目标为 ES2019
+		"target": "es2019",
+		// 指定 TypeScript 编译器可以使用的库文件
+		"lib": ["es2019", "es2020", "es2022.error"],
+		// 生成的 JavaScript 文件中移除注释
+		"removeComments": true,
+		// 在 `catch` 块中的变量类型为未知类型
+		"useUnknownInCatchVariables": true,
+		// 强制文件名的一致的大小写
+		"forceConsistentCasingInFileNames": true,
+		// 禁止隐式的 `any` 类型
+		"noImplicitAny": true,
+		// 如果函数没有返回值或只有部分分支有返回值，则报错
+		"noImplicitReturns": true,
+		// 检查是否有未使用的局部变量
+		"noUnusedLocals": true,
+		// 检查是否有未使用的函数参数
+		"noUnusedParameters": true,
+		// 启用严格的空值检查
+		"strictNullChecks": true,
+		// 保留 const 枚举类型成员
+		"preserveConstEnums": true,
+		// 允许以 import 的形式导入 CommonJS 模块
+		"esModuleInterop": true,
+		// 允许 TypeScript 导入 JSON 模块
+		"resolveJsonModule": true,
+		// 启用增量编译，用于加速编译过程
+		"incremental": true,
+		// 是否生成声明文件（.d.ts 文件）
+		"declaration": false,
+		// 生成源映射文件
+		"sourceMap": true,
+		// 跳过对所有声明文件的检查
+		"skipLibCheck": true
+	},
+	// 指定要排除的文件和文件夹
+	"exclude": ["**/dist/**/*", "**/node_modules/**/*", "cypress"],
+	// 指定要包含在编译过程中的文件
+	"files": ["node_modules/jest-expect-message/types/index.d.ts"]
+}

@@ -1,0 +1,29 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+		"target": "es2019",
+		"lib": ["es2019", "es2020", "es2022.error"],
+    "module": "CommonJS",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "stripInternal": true,
+    "skipLibCheck": true,
+    "pretty": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "typeRoots": [ "./typings", "./node_modules/@types"],
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "*.js",
+    "*.ts",
+    "dist",
+    "node_modules",
+    "test"
+  ]
+}
