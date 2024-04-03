@@ -10,7 +10,7 @@ import { mkdir } from 'fs/promises';
 import { config } from '../utils/config';
 import { initMqtt } from '../utils/initmqtt';
 import { initVoice } from '../utils/initVoice';
-import { initWechat } from 'chatbot-core';
+import { initWechat } from '@chat-bot/node-base';
 const { networkInterfaces } = require('os');
 const chalk = require('chalk');
 

@@ -1,11 +1,11 @@
 import path from 'path';
-import { getUserHome, InstanceSettings } from 'chatbot-core';
+import { getUserHome, InstanceSettings } from '@chat-bot/core';
 import { readFileSync } from 'fs';
 
 const userHome = getUserHome();
 const editorDir = path.join(
   __dirname,
-  '../../node_modules/chatbot-editor-ui/dist'
+  '../../node_modules/@chat-bot/editor-ui/dist'
 );
 function getEncryKey() {
   const content = readFileSync(userHome + '/.chatbot/config', 'utf8');

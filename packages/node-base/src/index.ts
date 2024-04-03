@@ -1,5 +1,5 @@
 import { WechatyBuilder } from 'wechaty';
-import { ChatbotPugin, config, log } from 'chatbot-assistant';
+import { ChatbotPugin, config, log } from '@chat-bot/assistant';
 
 export function initWechat() {
 	const name = 'chatbot';

@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { Log } from '../../utils/log';
+
+const log = new Log();
 
 const BASE_URL = 'https://api.dify.ai/v1';
 const routes = {

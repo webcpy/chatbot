@@ -1,5 +1,5 @@
 {
-  "name": "chatbot-monorepo",
+  "name": "aichat-monorepo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,18 +8,18 @@
     "pnpm": ">=8.14"
   },
   "dependencies": {
-    "chatbot": "workspace:*"
+    "@chat-bot/cli": "workspace:*"
   },
   "scripts": {
     "build": "turbo run build",
-    "build:backend": "pnpm --filter=!chatbot-editor-ui build",
-    "build:frontend": "pnpm --filter=chatbot-editor-ui build",
+    "build:backend": "pnpm --filter=!@chat-bot/editor-ui build",
+    "build:frontend": "pnpm --filter=@chat-bot/editor-ui build",
     "typecheck": "turbo run typecheck",
     "dev": "turbo run dev --parallel",
     "clean": "turbo run clean --parallel",
     "start": "run-script-os",
-    "start:default": "cd packages/cli/bin && ./chatbot",
-    "start:windows": "cd packages/cli/bin && chatbot",
+    "start:default": "cd packages/cli/bin && ./aichat",
+    "start:windows": "cd packages/cli/bin && aichat",
     "watch": "turbo run watch --parallel"
   },
   "devDependencies": {

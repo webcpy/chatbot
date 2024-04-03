@@ -5,6 +5,8 @@ export * from './sdk/chatgpt/types';
 export * from './sdk/chatgpt/chatGPT4V';
 export * from './sdk/dify';
 export * from './InstanceSettings';
+import { Log } from './utils/log';
+import { getUserHome, InstanceSettings } from './InstanceSettings';
 
-import { initWechat } from './initWechat';
-export { initWechat };
+export { getUserHome, InstanceSettings };
+export default Log;

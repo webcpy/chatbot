@@ -29,7 +29,7 @@ importers:
 
   .:
     dependencies:
-      chatbot:
+      '@chat-bot/cli':
         specifier: workspace:*
         version: link:packages/cli
     devDependencies:
@@ -123,6 +123,9 @@ importers:
 
   packages/assistant:
     dependencies:
+      '@chat-bot/core':
+        specifier: workspace:*
+        version: link:../core
       '@types/node-fetch':
         specifier: ^2.6.11
         version: 2.6.11
@@ -131,16 +134,13 @@ importers:
         version: 2.1.6
       axios:
         specifier: 1.6.7
-        version: 1.6.7(debug@4.3.4)
+        version: 1.6.7(debug@4.3.2)
       baidu-aip-sdk:
         specifier: ^4.16.15
         version: 4.16.15
       chalk:
         specifier: 4.1.0
         version: 4.1.0
-      chatbot-core:
-        specifier: workspace:*
-        version: link:../core
       chatgpt:
         specifier: ^5.2.5
         version: 5.2.5
@@ -268,6 +268,15 @@ importers:
 
   packages/cli:
     dependencies:
+      '@chat-bot/core':
+        specifier: workspace:*
+        version: link:../core
+      '@chat-bot/editor-ui':
+        specifier: workspace:*
+        version: link:../editor-ui
+      '@chat-bot/node-base':
+        specifier: workspace:*
+        version: link:../node-base
       '@midwayjs/axios':
         specifier: '3'
         version: 3.15.2
@@ -337,12 +346,6 @@ importers:
       chalk:
         specifier: 4.1.0
         version: 4.1.0
-      chatbot-core:
-        specifier: workspace:*
-        version: link:../core
-      chatbot-editor-ui:
-        specifier: workspace:*
-        version: link:../editor-ui
       chinese-simple2traditional:
         specifier: ^1.2.0
         version: 1.2.0
@@ -467,6 +470,9 @@ importers:
       del-cli:
         specifier: ^5.0.0
         version: 5.1.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       prettier:
         specifier: ^3.1.0
         version: 3.2.5
@@ -479,16 +485,13 @@ importers:
     devDependencies:
       axios:
         specifier: 1.6.7
-        version: 1.6.7(debug@4.3.4)
+        version: 1.6.7(debug@4.3.2)
       cac:
         specifier: ^6.7.14
         version: 6.7.14
       chalk:
         specifier: 4.1.0
         version: 4.1.0
-      chatbot-assistant:
-        specifier: workspace:*
-        version: link:../assistant
       conf:
         specifier: ^11.0.1
         version: 11.0.2
@@ -572,7 +575,7 @@ importers:
         version: 4.1.1
       axios:
         specifier: 1.6.7
-        version: 1.6.7(debug@4.3.4)
+        version: 1.6.7(debug@4.3.2)
       cropperjs:
         specifier: ^1.6.1
         version: 1.6.1
@@ -820,6 +823,16 @@ importers:
       vue-tsc:
         specifier: ^1.8.27
         version: 1.8.27(typescript@5.3.3)
+
+  packages/node-base:
+    dependencies:
+      wechaty:
+        specifier: ^1.20.2
+        version: 1.20.2(@swc/core@1.4.2)(brolog@1.14.2)(redux@4.2.1)(rxjs@7.8.1)
+    devDependencies:
+      '@chat-bot/assistant':
+        specifier: workspace:*
+        version: link:../assistant
 
 packages:
 
@@ -5005,7 +5018,7 @@ packages:
     resolution: {integrity: sha512-Gl1Qi6JbWXpWYN9arw6VIM6v5CHf3oj6I5SGUYv1q6pQF5fpJcaqmOF1/3tbG+xKbySZvdVUqQ8zXfgkpsQKJw==}
     engines: {node: '>=12'}
     dependencies:
-      axios: 1.6.7(debug@4.3.4)
+      axios: 1.6.7(debug@4.3.2)
     transitivePeerDependencies:
       - debug
     dev: false
@@ -8814,7 +8827,6 @@ packages:
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
-    dev: false
 
   /axios@1.6.7(debug@4.3.4):
     resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
@@ -8824,6 +8836,7 @@ packages:
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
+    dev: true
 
   /babel-eslint@10.1.0(eslint@7.32.0):
     resolution: {integrity: sha512-ifWaTHQ0ce+448CYop8AdrQiBsGrnC+bMgfyKFdi6EsPLTAWG+QfyDeM6OH+FmWnKvEq5NnBMLvlBUPKQZoDSg==}
@@ -10776,7 +10789,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-    dev: false
 
   /debug@4.3.4(supports-color@5.5.0):
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -12856,7 +12868,6 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.2
-    dev: false
 
   /follow-redirects@1.15.5(debug@4.3.4):
     resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
@@ -12868,6 +12879,7 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.4(supports-color@5.5.0)
+    dev: true
 
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -23307,7 +23319,7 @@ packages:
       wechaty-puppet: ^1.20.2
     dependencies:
       '@types/node-cleanup': 2.1.5
-      axios: 1.6.7(debug@4.3.4)
+      axios: 1.6.7(debug@4.3.2)
       body-parser: 1.20.2
       cuid: 2.1.8
       express: 4.18.2
@@ -23519,7 +23531,7 @@ packages:
     engines: {node: '>=16', npm: '>=7'}
     dependencies:
       '@dqbd/tiktoken': 1.0.13
-      axios: 1.6.7(debug@4.3.4)
+      axios: 1.6.7(debug@4.3.2)
       baidu-aip-sdk: 4.16.15
       dayjs: 1.11.10
       eventsource-parser: 1.1.2

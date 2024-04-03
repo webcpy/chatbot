@@ -1,0 +1,22 @@
+{
+	"extends": ["../../tsconfig.json", "../../tsconfig.backend.json"],
+	"compilerOptions": {
+		"rootDir": ".",
+		"preserveSymlinks": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"noImplicitAny": false,
+		"strictNullChecks": false,
+		"baseUrl": "src",
+		"lib": ["ES2021"],
+		"noImplicitReturns": false,
+		"paths": {
+			"@/*": ["./*"],
+			"@db/*": ["./databases/*"]
+		},
+		"tsBuildInfoFile": "dist/typecheck.tsbuildinfo",
+		"strict": false,
+		"useUnknownInCatchVariables": false
+	},
+	"include": ["src/**/*.ts", "test/**/*.ts"],
+}
