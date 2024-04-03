@@ -10,8 +10,6 @@
 		},
 		"typecheck": {},
 		"format": {},
-		"lint": {},
-		"lintfix": {},
 		"test": {},
 		"watch": {
 			"cache": false,

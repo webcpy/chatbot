@@ -19,7 +19,7 @@ export class MaterialAddDTO {
   @Rule(RuleType.string().required())
   tag: string;
 
-  @Rule(RuleType.number().valid(1, 2, 3, 4).required())
+  @Rule(RuleType.number().valid(1, 2, 3, 4, 5).required())
   type: number;
 
   @Rule(type(1))
@@ -42,9 +42,6 @@ export class MaterialAddDTO {
 
   @Rule(type(5))
   appid: string;
-
-  @Rule(type(5))
-  iconUrl: string;
 
   @Rule(type(5))
   pagePath: string;

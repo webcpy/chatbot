@@ -1,48 +1,57 @@
-import 'reflect-metadata'
-import { WechatyBuilder } from 'wechaty'
-import { ChatbotPugin } from './plugin/index'
-import log from './plugin/utils/npmlog'
-import config from './plugin/config'
+import config from './config'
+import onScan from './handlers/onScan'
+import onLogin from './handlers/onLogin'
+import onLogout from './handlers/on-logout'
+import onFriend from './handlers/on-friend'
+import onRoomjoin from './handlers/on-roomjoin'
+import onMessage from './handlers/on-message'
+import onReady from './handlers/on-ready'
+import onHeartbeat from './handlers/on-heartbeat'
+import onError from './handlers/on-error'
+import onRoomtopic from './handlers/on-roomtopic'
+import onRoomleave from './handlers/on-roomleave'
+import onVerifyCode from './handlers/on-verifycode'
+import { init } from './db/index';
+import { memoryInit } from './db/memory';
+import log from './utils/npmlog'
+let apiKeyEnv = config.get('chatbot.apiKey')
 
-const name = 'chatbot'
-let bot: any = ''
-let padLocalToken = config.get('token.local') // 如果申请了ipadlocal的token,可以直接填入
-let workProToken = config.get('token.work') // 如果申请了企业微信的token 可以直接填入
-if (padLocalToken) {
-  log.success('读取到环境变量中的ipadLocalToken')
-  log.success('读取到环境变量中的ipad token 使用ipad协议启动')
-  bot = WechatyBuilder.build({
-    name, // generate xxxx.memory-card.json and save login data for the next login
-    puppetOptions: {
-      token: padLocalToken
-    },
-    puppet: 'wechaty-puppet-padlocal'
-  })
-} else if (workProToken) {
-  log.success('读取到环境变量中的企微token')
-  log.success('读取到环境变量中的企微 token 使用企业微信协议启动')
-  bot = WechatyBuilder.build({
-    name, // generate xxxx.memory-card.json and save login data for the next login
-    puppet: 'wechaty-puppet-service',
-    puppetOptions: {
-      authority: 'token-service-discovery-test.juzibot.com',
-      tls: { disable: true },
-      token: workProToken
-    }
-  })
-} else {
-  log.success('默认使用wechat4u协议启动')
-
-  bot = WechatyBuilder.build({
-    name,
-    puppet: 'wechaty-puppet-wechat4u'
-  })
+interface Event {
+  type: string;
+  word: string;
 }
 
+// 声明数组类型
+type EventMessage = Event[];
 
-bot.use(
-  ChatbotPugin({
-    apiKey: '4d9399d7e0d9d4fea4431e129505981d'
-  })
-)
-bot.start().catch((e: any) => log.fail(e))
+function ChatbotPugin({ apiKey }: any) {
+
+  const initConfig = {
+    apiKey: apiKey || apiKeyEnv,
+    ignoreMessages: config.get('chatbot.ignoreMessages') as EventMessage,
+    ignoreEvents: config.get('chatbot.ignoreEvents'),
+    scanTimes: config.get('chatbot.scanTimes')
+  }
+  init()
+  memoryInit()
+  return function (bot: any) {
+    const ignoreEvents = initConfig.ignoreEvents as string[];
+    if (!ignoreEvents.includes('scan')) bot.on('scan', onScan);
+    if (!ignoreEvents.includes('login')) bot.on('login', onLogin)
+    if (!ignoreEvents.includes('logout')) bot.on('logout', onLogout)
+    if (!ignoreEvents.includes('friendship')) bot.on('friendship', onFriend)
+    if (!ignoreEvents.includes('room-join')) bot.on('room-join', onRoomjoin)
+    if (!ignoreEvents.includes('room-topic')) bot.on('room-topic', onRoomtopic)
+    if (!ignoreEvents.includes('room-leave')) bot.on('room-leave', onRoomleave)
+    if (!ignoreEvents.includes('message')) bot.on('message', onMessage)
+    if (!ignoreEvents.includes('ready')) bot.on('ready', onReady)
+    if (!ignoreEvents.includes('heartbeat')) bot.on('heartbeat', onHeartbeat)
+    if (!ignoreEvents.includes('error')) bot.on('error', onError)
+    if (!ignoreEvents.includes('verify-code')) bot.on('verify-code', onVerifyCode)
+  }
+}
+export {
+  ChatbotPugin,
+  config,
+  log
+}

@@ -3,6 +3,8 @@ node_modules
 .tmp
 tmp
 dist
+log
+mydb
 coverage
 npm-debug.log*
 yarn.lock
@@ -17,8 +19,5 @@ nodelinter.config.json
 **/package-lock.json
 packages/**/.turbo
 *.tsbuildinfo
-cypress/videos/*
-cypress/screenshots/*
-cypress/downloads/*
 *.swp
 CHANGELOG-*.md

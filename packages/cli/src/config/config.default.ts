@@ -14,7 +14,7 @@ export default {
     dataSource: {
       default: {
         type: 'sqlite',
-        database: path.join(__dirname, '../../chatbot.sqlite'),
+        database: config.sqlite,
         synchronize: true,
         logging: false,
         // ...
@@ -24,6 +24,9 @@ export default {
   },
   verison: process.env.VERSION,
   midwayLogger: {
+    default: {
+      dir: config.logPath,
+    },
     clients: {
       coreLogger: {
         level: 'warn',
@@ -134,11 +137,9 @@ export default {
     // fileSize: string, 最大上传文件大小，默认为 10mb
     fileSize: '2mb',
     // whitelist: string[]，文件扩展名白名单
-    whitelist: uploadWhiteList.concat(['.sil']).filter(ext =>
-      {
-        return ['.jpg', '.jpeg', '.png', '.silk', '.sil'].includes(ext)
-      }
-    ),
+    whitelist: uploadWhiteList.concat(['.sil']).filter(ext => {
+      return ['.jpg', '.jpeg', '.png', '.silk', '.sil'].includes(ext);
+    }),
     // tmpdir: string，上传的文件临时存储路径
     tmpdir: path.join(config.staticCacheDir, 'upload'),
     // cleanTimeout: number，上传的文件在临时目录中多久之后自动删除，默认为 5 分钟
@@ -150,7 +151,7 @@ export default {
   },
   koa: {
     port: config.port,
-    globalPrefix: '/wechat'
+    globalPrefix: '/wechat',
   },
   validate: {
     validationOptions: {
@@ -171,12 +172,12 @@ export default {
           host: '127.0.0.1',
           port: 1883,
           username: 'chatbot',
-          password: 'chatbot'
+          password: 'chatbot',
         },
         subscribeOptions: {
           topicObject: ['sub1', 'test'],
         },
-      }
+      },
     },
     pub: {
       clients: {
@@ -184,9 +185,9 @@ export default {
           host: '127.0.0.1',
           port: 1883,
           username: 'chatbot',
-          password: 'chatbot'
-        }
-      }
-    }
+          password: 'chatbot',
+        },
+      },
+    },
   },
 } as MidwayConfig;

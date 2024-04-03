@@ -8,6 +8,9 @@ import { promisify } from 'util';
 import path from 'path';
 import { mkdir } from 'fs/promises';
 import { config } from '../utils/config';
+import { initMqtt } from '../utils/initmqtt';
+import { initVoice } from '../utils/initVoice';
+import { initWechat } from 'chatbot-core';
 const { networkInterfaces } = require('os');
 const chalk = require('chalk');
 
@@ -76,6 +79,8 @@ export class Start extends BaseCommand {
 
   async init() {
     this.spinner.start();
+    await initVoice();
+    await initMqtt();
     await super.init();
     await this.generateStaticAssets();
   }
@@ -97,6 +102,7 @@ export class Start extends BaseCommand {
   async run() {
     await this.app.run();
     this.spinner.succeed('启动成功');
+    process.stdout.write = super.originalStdoutWrite;
     const localIp = this.getLocalIP()[0];
     console.log(
       chalk.blue('➜') +
@@ -107,5 +113,6 @@ export class Start extends BaseCommand {
       chalk.green('➜') +
         chalk.gray(`  Network:  http://${localIp}:${config.port}/`)
     );
+    initWechat();
   }
 }

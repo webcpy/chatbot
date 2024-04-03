@@ -1,5 +1,5 @@
 import path from 'path';
-import { getUserHome } from './InstanceSettings';
+import { getUserHome, InstanceSettings } from 'chatbot-core';
 import { readFileSync } from 'fs';
 
 const userHome = getUserHome();
@@ -13,12 +13,16 @@ function getEncryKey() {
   const settings = JSON.parse(content);
   return settings.encryptionKey;
 }
+new InstanceSettings();
 export const config = {
   editorDir,
   chatPath: '/',
   restEndpoint: '',
   hooksUrls: '',
   port: 7001,
+  mqttPath: path.join(userHome, '.chatbot/mqtt'),
+  logPath: path.join(userHome, '.chatbot/log'),
+  sqlite: path.join(userHome, '.chatbot/cli.sqlite'),
   staticCacheDir: path.join(userHome, '.cache/chatbot/public'),
   encryptionKey: getEncryKey(),
 };
