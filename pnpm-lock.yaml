@@ -134,7 +134,7 @@ importers:
         version: 2.1.6
       axios:
         specifier: 1.6.7
-        version: 1.6.7(debug@4.3.2)
+        version: 1.6.7(debug@4.3.4)
       baidu-aip-sdk:
         specifier: ^4.16.15
         version: 4.16.15
@@ -485,7 +485,7 @@ importers:
     devDependencies:
       axios:
         specifier: 1.6.7
-        version: 1.6.7(debug@4.3.2)
+        version: 1.6.7(debug@4.3.4)
       cac:
         specifier: ^6.7.14
         version: 6.7.14
@@ -575,7 +575,7 @@ importers:
         version: 4.1.1
       axios:
         specifier: 1.6.7
-        version: 1.6.7(debug@4.3.2)
+        version: 1.6.7(debug@4.3.4)
       cropperjs:
         specifier: ^1.6.1
         version: 1.6.1
@@ -826,13 +826,12 @@ importers:
 
   packages/node-base:
     dependencies:
-      wechaty:
-        specifier: ^1.20.2
-        version: 1.20.2(@swc/core@1.4.2)(brolog@1.14.2)(redux@4.2.1)(rxjs@7.8.1)
-    devDependencies:
       '@chat-bot/assistant':
         specifier: workspace:*
         version: link:../assistant
+      wechaty:
+        specifier: ^1.20.2
+        version: 1.20.2(@swc/core@1.4.2)(brolog@1.14.2)(redux@4.2.1)(rxjs@7.8.1)
 
 packages:
 
@@ -5018,7 +5017,7 @@ packages:
     resolution: {integrity: sha512-Gl1Qi6JbWXpWYN9arw6VIM6v5CHf3oj6I5SGUYv1q6pQF5fpJcaqmOF1/3tbG+xKbySZvdVUqQ8zXfgkpsQKJw==}
     engines: {node: '>=12'}
     dependencies:
-      axios: 1.6.7(debug@4.3.2)
+      axios: 1.6.7(debug@4.3.4)
     transitivePeerDependencies:
       - debug
     dev: false
@@ -8827,6 +8826,7 @@ packages:
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
+    dev: false
 
   /axios@1.6.7(debug@4.3.4):
     resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
@@ -8836,7 +8836,6 @@ packages:
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
-    dev: true
 
   /babel-eslint@10.1.0(eslint@7.32.0):
     resolution: {integrity: sha512-ifWaTHQ0ce+448CYop8AdrQiBsGrnC+bMgfyKFdi6EsPLTAWG+QfyDeM6OH+FmWnKvEq5NnBMLvlBUPKQZoDSg==}
@@ -10789,6 +10788,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: false
 
   /debug@4.3.4(supports-color@5.5.0):
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -12868,6 +12868,7 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.2
+    dev: false
 
   /follow-redirects@1.15.5(debug@4.3.4):
     resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
@@ -12879,7 +12880,6 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.4(supports-color@5.5.0)
-    dev: true
 
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -20680,9 +20680,6 @@ packages:
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
-    peerDependenciesMeta:
-      node-gyp:
-        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.1.0
@@ -23319,7 +23316,7 @@ packages:
       wechaty-puppet: ^1.20.2
     dependencies:
       '@types/node-cleanup': 2.1.5
-      axios: 1.6.7(debug@4.3.2)
+      axios: 1.6.7(debug@4.3.4)
       body-parser: 1.20.2
       cuid: 2.1.8
       express: 4.18.2
@@ -23531,7 +23528,7 @@ packages:
     engines: {node: '>=16', npm: '>=7'}
     dependencies:
       '@dqbd/tiktoken': 1.0.13
-      axios: 1.6.7(debug@4.3.2)
+      axios: 1.6.7(debug@4.3.4)
       baidu-aip-sdk: 4.16.15
       dayjs: 1.11.10
       eventsource-parser: 1.1.2

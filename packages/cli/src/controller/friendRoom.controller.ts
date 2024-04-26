@@ -193,6 +193,7 @@ export class V1Controller {
     };
   }
 
+  @Post('/openApi/wechat/contact/say', { ignoreGlobalPrefix: true })
   @Post('/contact/say')
   async say(@Body() query) {
     await this.producer.publishAsync(

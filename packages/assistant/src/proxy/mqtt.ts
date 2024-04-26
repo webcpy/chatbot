@@ -125,9 +125,9 @@ async function initMqtt(that: any) {
               log.info(`收到群：${content.roomName}发送消息请求： ${content.message.content || content.message.url}`)
               let room: any = null
               if (that.puppet.constructor.name == 'PuppetWechat4u') {
-                 room =  await that.Room.find({ topic: content.roomName }) || content.wxid && await that.Room.find({ id: content.wxid })
+                 room =  await that.Room.find({ topic: content.roomName }) || content.roomId && await that.Room.find({ id: content.roomId })
               } else {
-                 room =  content.wxid && await that.Room.find({ id: content.wxid }) || await that.Room.find({ topic: content.roomName })
+                 room =  content.roomId && await that.Room.find({ id: content.roomId }) || await that.Room.find({ topic: content.roomName })
               }
               if (!room) {
                 log.fail(`查找不到群：${content.roomName}，请检查群名是否正确`)
