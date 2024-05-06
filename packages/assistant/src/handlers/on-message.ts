@@ -33,7 +33,7 @@ function checkIgnore(msg: string, list: string | any[]) {
       return true
     }
   }
-  return false
+  return false;
 }
 
 async function handleFriendText(content: string, contact: any, name: any, that: any) {

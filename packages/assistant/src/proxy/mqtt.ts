@@ -122,12 +122,12 @@ async function initMqtt(that: any) {
           const content = JSON.parse(message.toString())
           if (topic === `aibotk/${userId}/say`) {
             if (content.target === 'Room') {
-              log.info(`收到群：${content.roomName}发送消息请求： ${content.message.content || content.message.url}`)
+              log.info(`收到群：${content.roomName}发送消息请求： ${content.message.content || (content.message.type == 3 ? content.message.fileName : content.message.url)}`)
               let room: any = null
               if (that.puppet.constructor.name == 'PuppetWechat4u') {
-                 room =  await that.Room.find({ topic: content.roomName }) || content.roomId && await that.Room.find({ id: content.roomId })
+                 room =  await that.Room.find({ topic: content.roomName }) || content.wxid && await that.Room.find({ id: content.wxid })
               } else {
-                 room =  content.roomId && await that.Room.find({ id: content.roomId }) || await that.Room.find({ topic: content.roomName })
+                 room =  content.wxid && await that.Room.find({ id: content.wxid }) || await that.Room.find({ topic: content.roomName })
               }
               if (!room) {
                 log.fail(`查找不到群：${content.roomName}，请检查群名是否正确`)
@@ -136,7 +136,7 @@ async function initMqtt(that: any) {
                 await roomSay.call(that,room, '', content.message)
               }
             } else if (content.target === 'Contact') {
-              log.info(`收到联系人：${content.alias || content.name}发送消息请求： ${content.message.content || content.message.url}`)
+              log.info(`收到联系人：${content.alias || content.name}发送消息请求： ${content.message.content || (content.message.type == 3 ? content.message.fileName : content.message.url)}`)
               let contact: any = null
               if (that.puppet.constructor.name == 'PuppetWechat4u') {
                 contact = (await that.Contact.find({ name: content.name })) || (await that.Contact.find({ alias: content.alias })) || (await that.Contact.find({ weixin: content.weixin })) || (content.wxid && await that.Contact.load(content.wxid)) // 获取你要发送的联系人

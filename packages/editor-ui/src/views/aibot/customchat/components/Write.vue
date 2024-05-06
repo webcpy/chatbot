@@ -508,7 +508,6 @@ const schema = reactive<FormSchema[]>([
       }
     ],
     formItemProps: {
-      rules: [required()],
       slots: {
         default: (formData) => {
           return (

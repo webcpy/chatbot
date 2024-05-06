@@ -18,6 +18,7 @@ export class OpenAiMiddleware implements IMiddleware<Context, NextFunction>  {
     return async (ctx: Context, next: NextFunction) => {
       // 判断下有没有校验信息
       const key = 'chatbot_api_key';
+
       if (!ctx.headers[key]) {
         throw new httpError.UnauthorizedError();
       }

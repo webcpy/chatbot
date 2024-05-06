@@ -102,6 +102,11 @@ export class APIController {
     }
   }
 
+  @Post('/textToAudio')
+  async textToAudio() {
+    return { code: 200, data: 'textToAudio' };
+  }
+
   @Post('/img/text')
   async imgToText(@Files() files: any) {
     if (!this.imgTextApi) return;
@@ -113,8 +118,6 @@ export class APIController {
       formData.append('file', fileData, {
         filename: path.basename(inputFilePath),
       });
-      console.log(this.imgTextApi);
-
       formData.append('compress', 1600);
       const data: any = await this.httpService.postForm(
         this.imgTextApi,

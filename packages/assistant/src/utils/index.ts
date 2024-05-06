@@ -235,7 +235,7 @@ async function roomSay(room: any, contact: any, msg: any) {
       await room.say(obj)
     } else if (msg.type == 3 && msg.url) {
       // bse64文件
-      let obj = FileBox.fromDataURL(msg.url, 'room-avatar.jpg')
+      let obj = FileBox.fromDataURL(msg.url, msg.fileName ? msg.fileName : 'room-avatar.jpg')
       contact ? await room.say('', contact) : ''
       await delay(500)
       await room.say(obj)
@@ -292,7 +292,10 @@ async function contactSay(contact: any, msg: any, _isRoom = false) {
       msg = res
     }
   }
-  log.info(['回复内容：', msg])
+  log.info(['回复内容：', msg.type == 3 ? {
+    ...msg,
+    url: 'base64'
+  } : msg])
   try {
     if (msg.type == 1 && msg.content) {
       const content = await formatContent(msg.content)
@@ -313,7 +316,7 @@ async function contactSay(contact: any, msg: any, _isRoom = false) {
       await contact.say(obj)
     } else if (msg.type == 3 && msg.url) {
       // bse64文件
-      let obj = FileBox.fromDataURL(msg.url, 'user-avatar.jpg')
+      let obj = FileBox.fromDataURL(msg.url, msg.fileName ? msg.fileName : 'user-avatar.jpg')
       await contact.say(obj)
     } else if (msg.type == 4 && msg.url && msg.title && msg.description) {
       const description = await formatContent(msg.description)

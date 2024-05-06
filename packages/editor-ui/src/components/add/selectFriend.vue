@@ -74,7 +74,6 @@ const querySearchAsync = (_queryString: string, cb: (arg: any) => void) => {
           }
         }
       })
-      console.log(data)
       options.value = data
     })
     .catch((_error) => {

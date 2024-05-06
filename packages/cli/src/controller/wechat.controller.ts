@@ -179,6 +179,7 @@ export class V1Controller {
     await this.BaseConfig.save(baseConfig)
   }
 
+  @Get('/openApi/wechat/status', {ignoreGlobalPrefix: true})
   @Get('/status')
   async statusqrcode() {
     const data = await this.CodeSatus.findOneBy({

@@ -39,6 +39,7 @@ export class V1Controller {
   @Inject()
   ctx;
 
+  @Get('/openApi/wechat/getFriendList', { ignoreGlobalPrefix: true })
   @Get('/friend')
   async getFriend(@Query() query) {
     const { data, count } = await this.PageService.searchWithPagination(
@@ -58,6 +59,7 @@ export class V1Controller {
     };
   }
 
+  @Get('/openApi/wechat/getFriendLists', { ignoreGlobalPrefix: true })
   @Get('/friends')
   async friends(@Query() query) {
     const { data, count } = await this.PageService.searchWithPagination(
@@ -78,6 +80,7 @@ export class V1Controller {
     };
   }
 
+  @Get('/openApi/wechat/getRoomList', { ignoreGlobalPrefix: true })
   @Get('/room')
   async getRoom(@Query() query) {
     const { data, count } = await this.PageService.searchWithPagination(
@@ -121,6 +124,7 @@ export class V1Controller {
 
   @Post('/openApi/wechat/friend', { ignoreGlobalPrefix: true })
   async addFriend(@Body('friend') friend) {
+
     for (const item of friend) {
       // 判断是否已经添加
       const data = await this.Friend.findOneBy({
@@ -155,9 +159,10 @@ export class V1Controller {
   async addRoom(@Body('room') room) {
     for (const item of room) {
       const data = await this.Room.findOneBy({
-        userId: this.ctx.state.user.id,
+        id: this.ctx.state.user.id,
         topic: item.topic,
       });
+
       if (!data) {
         await this.Room.save({
           ...item,
@@ -177,16 +182,6 @@ export class V1Controller {
         );
       }
     }
-    await this.Room.save(
-      room.map(it => {
-        return {
-          ...it,
-          userId: this.ctx.state.user.id,
-          uniqueId: uuidv4(),
-          name: it.topic,
-        };
-      })
-    );
     return {
       code: 200,
       data: {},

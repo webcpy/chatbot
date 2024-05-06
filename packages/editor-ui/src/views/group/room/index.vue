@@ -228,9 +228,8 @@ const save = async () => {
     if (formData) {
       await sayApi({
         target: 'Room',
-        roomId: currentRow.value.uniqueId,
+        wxid: currentRow.value.wxid,
         roomName: formData.topic,
-        topic: formData.topic,
         message: {
           type: formData.type,
           content: formData.content || ''

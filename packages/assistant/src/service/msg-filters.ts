@@ -307,6 +307,7 @@ async function getCustomConfig({ name, id, room, roomId, roomName, type }: any) 
         }
       })
     } else {
+
       finalConfig = !room && gptConfigs.find((item: any) => {
         const targetNames: any[] = []
         const targetIds: any[] = []

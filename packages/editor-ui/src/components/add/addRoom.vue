@@ -94,9 +94,6 @@ const querySearchAsync = (_queryString: string) => {
       options.value = []
     })
 }
-// const select = (val: any) => {
-//   console.log(val)
-// }
-// eslint-disable-next-line vue/require-prop-types
+
 let model: any = defineModel()
 </script>
