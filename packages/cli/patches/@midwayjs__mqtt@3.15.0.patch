@@ -1,0 +1,19 @@
+diff --git a/dist/framework.js b/dist/framework.js
+index f379c7e0d30247da38c3d55b0d20e3fb37b4ba31..80c2b2841656c17173278e1c0c96232d3c55d225 100644
+--- a/dist/framework.js
++++ b/dist/framework.js
+@@ -45,9 +45,11 @@ let MidwayMQTTFramework = class MidwayMQTTFramework extends core_1.BaseFramework
+                 ctx.packet = packet;
+                 ctx.message = message;
+                 const fn = await this.applyMiddleware(async (ctx) => {
+-                    const instance = await ctx.requestContext.getAsync(mqttSubscriberMap[customKey]);
+-                    // eslint-disable-next-line prefer-spread
+-                    return await instance['subscribe'].call(instance, ctx);
++                    if (mqttSubscriberMap[topic]) {
++                        const instance = await ctx.requestContext.getAsync(mqttSubscriberMap[topic]);
++                        // eslint-disable-next-line prefer-spread
++                        return await instance['subscribe'].call(instance, ctx);
++                    }
+                 });
+                 return await fn(ctx);
+             });

@@ -1,5 +1,13 @@
 # @chat-bot/editor-ui
 
+## 2.0.0
+
+### Major Changes
+
+- naem
+- name
+- 包名修改
+
 ## 1.0.0
 
 ### Major Changes

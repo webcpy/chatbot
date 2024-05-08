@@ -1,5 +1,13 @@
 # @chat-bot/core
 
+## 2.0.0
+
+### Major Changes
+
+- naem
+- name
+- 包名修改
+
 ## 1.0.0
 
 ### Major Changes

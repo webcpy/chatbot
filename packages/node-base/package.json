@@ -1,6 +1,6 @@
 {
   "name": "@chat-bot/node-base",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
@@ -12,6 +12,9 @@
     "typecheck": "tsc",
     "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",

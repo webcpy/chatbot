@@ -1,5 +1,22 @@
 # aichat
 
+## 2.0.0
+
+### Major Changes
+
+- naem
+- name
+- 包名修改
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+  - @chat-bot/editor-ui@2.0.0
+  - @chat-bot/node-base@2.0.0
+  - @chat-bot/core@2.0.0
+
 ## 1.0.0
 
 ### Major Changes

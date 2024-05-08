@@ -1,5 +1,20 @@
 # @chat-bot/node-base
 
+## 2.0.0
+
+### Major Changes
+
+- naem
+- name
+- 包名修改
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+  - @chat-bot/assistant@2.0.0
+
 ## 1.0.0
 
 ### Major Changes
