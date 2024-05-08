@@ -1,4 +1,4 @@
-# @chat-bot/core
+# @chat-bot/editor-ui
 
 ## 1.0.0
 
@@ -10,10 +10,3 @@
 ### Minor Changes
 
 - 8bcc884: 依赖修改
-- 76d936b: me::
-
-## 0.0.1
-
-### Patch Changes
-
-- 第一次发布

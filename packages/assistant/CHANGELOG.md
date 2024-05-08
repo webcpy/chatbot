@@ -1,5 +1,25 @@
 # @chat-bot/assistant
 
+## 1.0.0
+
+### Major Changes
+
+- tts
+- 8bcc884: 第一次发布
+
+### Minor Changes
+
+- 8bcc884: 依赖修改
+- 76d936b: me::
+
+### Patch Changes
+
+- Updated dependencies [8bcc884]
+- Updated dependencies
+- Updated dependencies [8bcc884]
+- Updated dependencies [76d936b]
+  - @chat-bot/core@1.0.0
+
 ## 0.0.1
 
 ### Patch Changes

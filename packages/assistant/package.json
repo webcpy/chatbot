@@ -1,6 +1,6 @@
 {
 	"name": "@chat-bot/assistant",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
@@ -68,5 +68,5 @@
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org/",
 		"access": "public"
-	  }
+	}
 }
