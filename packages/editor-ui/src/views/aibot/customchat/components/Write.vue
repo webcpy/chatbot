@@ -455,6 +455,34 @@ const schema = reactive<FormSchema[]>([
     }
   },
   {
+    field: 'tts',
+    label: '开启语音回复',
+    component: 'Switch',
+    value: 12,
+    colProps: {
+      span: 4
+    },
+    formItemProps: {
+      slots: {
+        label: toolLabel('开启语音回复', '海螺AI')
+      }
+    }
+  },
+  {
+    field: 'voice',
+    label: '开启语音回复',
+    component: 'Input',
+    value: '',
+    colProps: {
+      span: 12
+    },
+    formItemProps: {
+      slots: {
+        label: toolLabel('发音人', '海螺AI')
+      }
+    }
+  },
+  {
     field: 'model',
     component: 'Select',
     formItemProps: {

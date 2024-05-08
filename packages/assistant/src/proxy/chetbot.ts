@@ -6,6 +6,7 @@ import { BaseConfig } from '../db/repositories/BaseConfig'
 import { Rss } from '../db/repositories/rssConfig'
 import { get } from 'lodash'
 import { service } from './superagent'
+import { data } from 'cheerio/lib/api/attributes';
 
 /**
  * 获取美女图片
@@ -788,6 +789,21 @@ async function getMaterial(id: any) {
     return content.data
   } catch (error) {
     log.fail(['获取mqtt配置错误', error])
+  }
+}
+
+export async function gettts(options: any) {
+
+  try {
+    let option = {
+      method: 'POST',
+      url: `/text/audio`,
+      params: options
+    }
+    let content: any = await aiBotReq(option)
+    return content.data
+  } catch (error) {
+    log.fail(['tts错误', error])
   }
 }
 export { getVerifyCode }

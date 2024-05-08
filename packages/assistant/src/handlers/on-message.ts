@@ -37,7 +37,7 @@ function checkIgnore(msg: string, list: string | any[]) {
 }
 
 async function handleFriendText(content: string, contact: any, name: any, that: any) {
-  const isIgnore = checkIgnore(content.trim(), globalConfig.get('chatbot.ignoreMessages'))
+  const isIgnore = checkIgnore(content.trim(), globalConfig.get('chatbot.ignoreMessages'));
   if (content.trim() && !isIgnore) {
     const gpt4vReplys = await getGpt4vChat({
       that,
@@ -50,16 +50,24 @@ async function handleFriendText(content: string, contact: any, name: any, that: 
       name,
       msgContent: { type: 1, content }
     })
+
     if (gpt4vReplys.length) {
       for (let reply of gpt4vReplys) {
-        await contactSay.call(that, contact, reply)
+        await contactSay.call(that, contact, {
+          ...reply,
+          textToSil: true
+        })
       }
       return
     }
     let replys = await getContactTextReply(that, contact, content.trim())
+   
     for (let reply of replys) {
       await delay(1000)
-      await contactSay.call(that, contact, reply)
+      await contactSay.call(that, contact, {
+        ...reply,
+        textToSil: true
+      })
     }
   }
 }

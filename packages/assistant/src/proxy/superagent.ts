@@ -3,6 +3,7 @@ import { BaseConfig } from '../db/repositories/BaseConfig'
 import config from '../config/index'
 import axios from 'axios'
 import { Container } from 'typedi'
+import { data } from 'cheerio/lib/api/attributes'
 
 const CHATBOT_API = config.get('api.chatbot')
 const TX_API = config.get('api.txApi')

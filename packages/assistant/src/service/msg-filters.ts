@@ -282,6 +282,7 @@ async function robotMsg({ msg, name, id, config, isMention, room, roomId, isFrie
 // @ts-ignore
 async function getCustomConfig({ name, id, room, roomId, roomName, type }: any) {
   const gptConfigs: any = globalConfig.get('chatbot.gptconfig')
+
   if (gptConfigs && gptConfigs.length) {
     let finalConfig = ''
     if (room) {

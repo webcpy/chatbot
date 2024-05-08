@@ -20,7 +20,6 @@ export async function getGpt4vChat({
     gpt4vRes = new BotManage(100, that)
   }
   let finalConfig: any = await getCustomConfig({ name, id, roomName, roomId, room, type: 'open4v' })
-  console.log(finalConfig, name, id, roomName, roomId, room)
   if (finalConfig) {
     const isRoom = finalConfig.type === 'room'
     if (msgContent.type === 1) {

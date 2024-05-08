@@ -1,4 +1,4 @@
-import { Inject, Controller, Post, Files, Config } from '@midwayjs/core';
+import { Inject, Controller, Post, Files, Config, Body } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { ApiExcludeController } from '@midwayjs/swagger';
 import { File } from '../entity/file.entity';
@@ -45,6 +45,29 @@ export class APIController {
     });
   }
 
+  async encodeAudio(inputFilePath, outputFilePath) {
+    const voice = new wxVoice();
+
+    return new Promise((resolve, reject) => {
+      voice.on('error', err => reject(err));
+
+      voice.encode(inputFilePath, outputFilePath, { format: 'silk' }, file =>
+        resolve(file)
+      );
+    });
+  }
+
+  async getAudioLength(path) {
+    const voice = new wxVoice();
+    return new Promise((resolve, reject) => {
+      voice.on('error', err => reject(err));
+      voice.duration(path, dur =>
+        resolve(dur)
+      );
+    });
+  }
+
+
   delFileList(fileList: any) {
     fileList.forEach(filePath => {
       fs.unlink(filePath, err => {
@@ -55,6 +78,48 @@ export class APIController {
         }
       });
     });
+  }
+
+  @Post('/text/audio')
+  async textToaudio(@Body() body: any) {
+    try {
+      const data: any = await this.httpService.post(
+        body.proxyPass + '/audio/speech',
+        {
+          input: body.content,
+          voice: body.voice,
+          model: body.model
+        },
+        {
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${body.token}`
+          },
+          responseType: 'arraybuffer',
+          timeout: 60 * 1000,
+        }
+      );
+      const filePath = this.filePath + '/' + uuidv4().replace(/-/g, '') + '.mp3'
+      const silPath = this.filePath + '/' + uuidv4().replace(/-/g, '') + '.sil'
+      fs.writeFileSync(filePath, data.data);
+      await this.encodeAudio(filePath, silPath);
+      const voiceLength: any = await this.getAudioLength(filePath)
+      const fileData = fs.readFileSync(silPath);
+      setTimeout(() => {
+        this.delFileList([silPath, filePath]);
+      }, 5000)
+
+      return {
+        code: 200,
+        data: {
+          name: uuidv4() + '.sil',
+          base: fileData.toString('base64'),
+          voiceLength: (voiceLength * 1000).toFixed(0),
+        },
+      };
+    } catch (ex) {
+      throw new Error(ex);
+    }
   }
 
   @Post('/audio/text')

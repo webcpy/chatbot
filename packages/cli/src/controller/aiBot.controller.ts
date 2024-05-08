@@ -267,6 +267,8 @@ export class Schedule {
             ...data,
             keywordSystemMessages: this.findAllProtMap(data.keywordSystemMessages, allPromotMap),
             botConfig: {
+              "tts": item.tts,
+              "voice": item.voice,
               "debug": item.debug,
               "model": item.model,
               "token": item.token,

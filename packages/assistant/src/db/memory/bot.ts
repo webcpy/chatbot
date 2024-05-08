@@ -20,6 +20,13 @@ export class BotConfig {
 	@Column({ default: false })
 	showQuestion: boolean;
 
+	
+	@Column({ default: false})
+	tts: Boolean;
+  
+	@Column({ nullable: true })
+	voice: string;
+	
 	@Column({ default: 60 })
 	openaiTimeout: number;
 

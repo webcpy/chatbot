@@ -97,6 +97,12 @@ export class AiBotCustomchat {
   showQuestion: Boolean;
 
   @Column({ default: false})
+  tts: Boolean;
+
+  @Column({ nullable: true })
+  voice: string;
+
+  @Column({ default: false})
   open4v: Boolean;
 
   @Column({ default: false})
