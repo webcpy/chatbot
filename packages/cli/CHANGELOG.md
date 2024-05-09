@@ -1,5 +1,24 @@
 # aichat
 
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @chat-bot/core@2.0.1
+
+## 2.0.3
+
+### Patch Changes
+
+- 去掉无用依赖
+
+## 2.0.2
+
+### Patch Changes
+
+- name
+
 ## 2.0.2
 
 ### Patch Changes
