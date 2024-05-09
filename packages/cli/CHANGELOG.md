@@ -1,5 +1,17 @@
 # aichat
 
+## 2.0.2
+
+### Patch Changes
+
+- name3
+
+## 2.0.1
+
+### Patch Changes
+
+- name2
+
 ## 2.0.0
 
 ### Major Changes

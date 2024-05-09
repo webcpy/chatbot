@@ -5,11 +5,12 @@ FROM node:${NODE_VERSION}-alpine as builder
 RUN apk add --no-cache ffmpeg tini
 
 COPY .npmrc /usr/local/etc/npmrc
-RUN npm install -g npm@9.9.2 wx-voice@0.2.1
+RUN npm install -g pnpm@8.14.3
 
 
 WORKDIR /tmp
 COPY package.json ./
+
 RUN corepack enable && corepack prepare --activate
 
 # Cleanup
