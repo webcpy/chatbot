@@ -1,5 +1,17 @@
 # @chat-bot/core
 
+## 3.1.0
+
+### Minor Changes
+
+- name2
+
+## 3.0.0
+
+### Major Changes
+
+- na
+
 ## 2.0.1
 
 ### Patch Changes

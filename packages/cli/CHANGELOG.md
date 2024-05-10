@@ -1,78 +1,13 @@
-# aichat
+# @chat-bot/cli
 
-## 2.0.4
-
-### Patch Changes
-
-- Updated dependencies
-  - @chat-bot/core@2.0.1
-
-## 2.0.3
-
-### Patch Changes
-
-- 去掉无用依赖
-
-## 2.0.2
-
-### Patch Changes
-
-- name
-
-## 2.0.2
-
-### Patch Changes
-
-- name3
-
-## 2.0.1
-
-### Patch Changes
-
-- name2
-
-## 2.0.0
-
-### Major Changes
-
-- naem
-- name
-- 包名修改
-
-### Patch Changes
-
-- Updated dependencies
-- Updated dependencies
-- Updated dependencies
-  - @chat-bot/editor-ui@2.0.0
-  - @chat-bot/node-base@2.0.0
-  - @chat-bot/core@2.0.0
-
-## 1.0.0
-
-### Major Changes
-
-- tts
-- 8bcc884: 第一次发布
+## 3.1.0
 
 ### Minor Changes
 
-- 8bcc884: 依赖修改
-- 76d936b: me::
-
-### Patch Changes
-
-- Updated dependencies [8bcc884]
-- Updated dependencies
-- Updated dependencies [8bcc884]
-- Updated dependencies [76d936b]
-  - @chat-bot/core@1.0.0
-  - @chat-bot/editor-ui@1.0.0
-  - @chat-bot/node-base@1.0.0
-
-## 0.0.1
+- name2
 
 ### Patch Changes
 
 - Updated dependencies
-  - @chat-bot/core@0.0.1
+  - @chat-bot/editor-ui@2.1.0
+  - @chat-bot/core@3.1.0

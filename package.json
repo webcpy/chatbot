@@ -8,21 +8,21 @@
     "pnpm": ">=8.14"
   },
   "packageManager": "pnpm@8.14.3",
-  "dependencies": {
-    "@chat-bot/cli": "workspace:*",
-    "wx-voice": "^0.2.1"
-  },
   "scripts": {
     "build": "turbo run build",
-    "build:backend": "pnpm --filter=!@chat-bot/editor-ui build",
-    "build:frontend": "pnpm --filter=@chat-bot/editor-ui build",
+    "build:backend": "pnpm --filter=!chat-bot-editor-ui build",
+    "build:frontend": "pnpm --filter=chat-bot-editor-ui build",
     "typecheck": "turbo run typecheck",
     "dev": "turbo run dev --parallel",
     "clean": "turbo run clean --parallel",
     "start": "run-script-os",
-    "start:default": "cd packages/cli/bin && ./aichat",
-    "start:windows": "cd packages/cli/bin && aichat",
+    "start:default": "cd packages/cli/bin && ./chatbot",
+    "start:windows": "cd packages/cli/bin && chatbot",
     "watch": "turbo run watch --parallel"
+  },
+  "dependencies": {
+    "@chat-bot/cli": "workspace:*",
+    "wx-voice": "^0.2.1"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
@@ -71,10 +71,6 @@
       "tsconfig-paths": "^4.2.0",
       "ts-node": "^10.9.1",
       "typescript": "^5.3.0"
-    },
-    "patchedDependencies": {
-      "@midwayjs/mqtt@3.15.0": "patches/@midwayjs__mqtt@3.15.0.patch",
-      "fluent-ffmpeg@2.1.2": "patches/fluent-ffmpeg@2.1.2.patch"
     }
   }
 }

@@ -1,5 +1,17 @@
 # @chat-bot/node-base
 
+## 2.0.3
+
+### Patch Changes
+
+- @chat-bot/assistant@2.0.3
+
+## 2.0.2
+
+### Patch Changes
+
+- @chat-bot/assistant@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes
