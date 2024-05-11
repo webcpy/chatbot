@@ -19,7 +19,8 @@ import {
   saveCode,
   refreshAppKeyAPi,
   findCode,
-  statusCode
+  statusCode,
+  deldata
 } from '@/api/dashboard/workplace'
 import { throttle } from 'lodash-es'
 
@@ -81,6 +82,9 @@ const delValue = async () => {
       cancelButtonText: '取消',
       type: 'warning'
     })
+    await deldata()
+    await getCodeSattus()
+    ElMessage.success('操作成功')
   } catch (ex) {}
 }
 

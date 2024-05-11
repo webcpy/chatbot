@@ -15,6 +15,7 @@ import { PageService } from '../service/page.service';
 import { DefaultMqttProducer } from '@midwayjs/mqtt';
 import { BaseConfig } from '../entity/baseconfig.entity';
 import { v4 as uuidv4 } from 'uuid';
+import { CodeSatus } from '../entity/codeSatus.entity';
 
 @Controller('/')
 export class V1Controller {
@@ -23,6 +24,9 @@ export class V1Controller {
 
   @Inject()
   producer: DefaultMqttProducer;
+
+  @InjectEntityModel(CodeSatus)
+  CodeSatus: Repository<CodeSatus>;
 
   @InjectEntityModel(RoomJoinKeywords)
   RoomJoinKeywords: Repository<RoomJoinKeywords>;
@@ -53,6 +57,7 @@ export class V1Controller {
       query.pageSize || 50,
       query.current || 1
     );
+
     return {
       code: 200,
       data: { list: data, count: count },
@@ -96,6 +101,26 @@ export class V1Controller {
     return {
       code: 200,
       data: { list: data, count: count },
+    };
+  }
+
+  @Post('/deldata')
+  async deldata() {
+    await this.Friend.delete({
+      userId: this.ctx.state.user.id,
+    });
+    await this.Room.delete({
+      userId: this.ctx.state.user.id,
+    });
+    await this.CodeSatus.update({
+      userId: this.ctx.state.user.id
+    }, {
+      qrUrl: '',
+      qrStatus: null,
+    });
+    return {
+      code: 200,
+      data: { list: [], count: 0 },
     };
   }
 

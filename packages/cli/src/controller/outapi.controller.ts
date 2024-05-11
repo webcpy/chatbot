@@ -100,12 +100,12 @@ export class APIController {
         }
       );
       const isWechaty = get(body, 'protocol', 'PuppetWechat4u')
-      if (isWechaty) {
+      if (isWechaty == 'PuppetWechat4u') {
         return {
           code: 200,
           data: {
             name: uuidv4() + '.mp3',
-            base: Buffer.from(data).toString('base64'),
+            base: Buffer.from(data.data).toString('base64'),
           },
         }
       } else {

@@ -1,5 +1,6 @@
 import request from '@/axios'
 import type { WorkplaceTotal, Project, Dynamic, Team, RadarData } from './types'
+import { da } from 'element-plus/es/locale'
 
 export const getAppkeyApi = (): Promise<IResponse<WorkplaceTotal>> => {
   return request.get({ url: '/user/appid' })
@@ -11,6 +12,9 @@ export const refreshAppKeyAPi = () => {
 
 export const saveCode = (data: any) => {
   return request.post({ url: '/wechat/worker/setverifycode', data })
+}
+export const deldata = () => {
+  return request.post({ url: '/wechat/deldata', data: {}} )
 }
 
 export const findCode = () => {
