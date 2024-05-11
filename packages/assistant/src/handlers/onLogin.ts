@@ -23,7 +23,7 @@ async function onLogin(user: any) {
       ==========================================================
        贴心AI助理${user}登录了
        你正在使用的是: ${PUPPET_MAP[this.puppet.constructor.name]}!
-       最新插件版本: ${lastVersion}
+       最新插件版本: ${lastVersion || '1.0.0'}
        你的插件版本: ${version}
        ${lastVersion !== version ? '请及时更新插件，才能体验最新功能' : ''}
       ==========================================================

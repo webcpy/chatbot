@@ -1,13 +1,24 @@
 ARG NODE_VERSION=18
-FROM webcpy1234/chatbot-base:0.1
+FROM webcpy1234/chatbot-base:0.2
+
+USER root
 
 ENV NODE_ENV=production
+
 RUN set -eux; \
+    npm config set registry https://registry.npmmirror.com/ && \
     npm install -g wx-voice && \
-	npm install -g --omit=dev @chat-bot/cli --ignore-scripts && \
+	wx-voice compile && \
+	npm install -g --omit=dev @chat-bot/cli@3.3.0  --ignore-scripts && \
 	npm rebuild --prefix=/usr/local/lib/node_modules/@chat-bot/cli sqlite3 && \
 	rm -rf /usr/local/lib/node_modules/@chat-bot/cli/node_modules/@chat-bot/editor-ui/node_modules && \
 	rm -rf /root/.npm
+
+WORKDIR /usr/local/lib/node_modules/@chat-bot/cli/
+
+RUN wx-voice compile
+
+WORKDIR /home/node
 
 COPY docker-entrypoint.sh /
 

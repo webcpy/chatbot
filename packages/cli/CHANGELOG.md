@@ -1,5 +1,13 @@
 # @chat-bot/cli
 
+## 3.3.1
+
+### Patch Changes
+
+- name
+- Updated dependencies
+  - @chat-bot/editor-ui@2.2.1
+
 ## 3.3.0
 
 ### Minor Changes

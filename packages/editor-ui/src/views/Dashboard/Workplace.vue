@@ -220,7 +220,7 @@ getAllApi()
                   </template>
                 </ElInput>
               </div>
-              <p class="pt-6">当前panel插件版本：{{ version }} </p>
+              <p class="pt-6">当前panel插件版本：{{ version ? version : '1.0.0'}} </p>
               <!-- <p>最新插件版本：1.6.42 </p>
               <p class="text-red-600"
                 >请更新最新版插件，体验最新功能 <span class="text-[#3F9EFF]">如何更新?</span></p

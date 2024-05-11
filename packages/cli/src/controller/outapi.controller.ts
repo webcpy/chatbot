@@ -99,24 +99,35 @@ export class APIController {
           timeout: 60 * 1000,
         }
       );
-      const filePath = this.filePath + '/' + uuidv4().replace(/-/g, '') + '.mp3'
-      const silPath = this.filePath + '/' + uuidv4().replace(/-/g, '') + '.sil'
-      fs.writeFileSync(filePath, data.data);
-      await this.encodeAudio(filePath, silPath);
-      const voiceLength: any = await this.getAudioLength(filePath)
-      const fileData = fs.readFileSync(silPath);
-      setTimeout(() => {
-        this.delFileList([silPath, filePath]);
-      }, 600000)
+      const isWechaty = get(body, 'protocol', 'PuppetWechat4u')
+      if (isWechaty) {
+        return {
+          code: 200,
+          data: {
+            name: uuidv4() + '.mp3',
+            base: Buffer.from(data).toString('base64'),
+          },
+        }
+      } else {
+        const filePath = this.filePath + '/' + uuidv4().replace(/-/g, '') + '.mp3'
+        const silPath = this.filePath + '/' + uuidv4().replace(/-/g, '') + '.sil'
+        fs.writeFileSync(filePath, data.data);
+        await this.encodeAudio(filePath, silPath);
+        const voiceLength: any = await this.getAudioLength(filePath)
+        const fileData = fs.readFileSync(silPath);
+        setTimeout(() => {
+          this.delFileList([silPath, filePath]);
+        }, 600000)
 
-      return {
-        code: 200,
-        data: {
-          name: uuidv4() + '.sil',
-          base: fileData.toString('base64'),
-          voiceLength: (voiceLength * 1000).toFixed(0),
-        },
-      };
+        return {
+          code: 200,
+          data: {
+            name: uuidv4() + '.sil',
+            base: fileData.toString('base64'),
+            voiceLength: (voiceLength * 1000).toFixed(0),
+          },
+        };
+      }
     } catch (ex) {
       throw new Error(ex);
     }

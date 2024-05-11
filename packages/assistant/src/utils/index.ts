@@ -11,6 +11,7 @@ import sharp from 'sharp'
 import { Dayjs } from 'dayjs'
 import { getCustomConfig } from '../service/msg-filters'
 import { get } from 'lodash'
+import { PuppetConfig } from '../db/repositories/Puppet'
 
 async function formatContent(text: string) {
   text = text.replaceAll('\\n', '\n');
@@ -210,6 +211,10 @@ async function roomSay(room: any, contact: any, msg: any) {
   //   userId: configEnv.get('chatbot.userId')
   // })
 
+  const Puppet = Container.get(PuppetConfig)
+  const puppetInfo: any = await Puppet.getPuppetInfo()
+  const protocol = get(puppetInfo, 'puppetType', 'PuppetWechat4u')
+
   const roomName = await room.topic()
   let result: any = await getCustomConfig({ name: '', id: '', roomName, roomId: room.id, room: true, type: 'tts' })
 
@@ -220,6 +225,7 @@ async function roomSay(room: any, contact: any, msg: any) {
       msg = {
         voice: result.botConfig.voice,
         token: result.botConfig.token,
+        protocol,
         proxyPass: result.botConfig.proxyPass,
         ...msg
       }
@@ -281,7 +287,14 @@ async function roomSay(room: any, contact: any, msg: any) {
       await room.say(miniProgram)
     } else if (msg.type == 8) {
       try {
-        const data = await gettts(msg)
+        if ( protocol == 'PuppetWechat4u') {
+          await contact.say(msg.content)
+          const data = await gettts(msg)
+          const fileBox = FileBox.fromBase64(data.base, data.name);
+          fileBox.mimeType = "audio/mp3";
+          await contact.say(fileBox)
+        } else {
+          const data = await gettts(msg)
         if (data.voiceLength > 60 * 1000) {
           await room.say(msg.content)
         } else {
@@ -292,6 +305,8 @@ async function roomSay(room: any, contact: any, msg: any) {
           };
           await room.say(fileBox)
         }
+        }
+        
       } catch (e) {
         await room.say(msg.content)
       }
@@ -321,6 +336,9 @@ async function contactSay(contact: any, msg: any, _isRoom = false) {
   //   userId: configEnv.get('chatbot.userId')
   // })
   // const { role } = config.userInfo
+  const Puppet = Container.get(PuppetConfig)
+  const puppetInfo: any = await Puppet.getPuppetInfo()
+  const protocol = get(puppetInfo, 'puppetType', 'PuppetWechat4u')
 
   const name = await contact.name()
   let result: any = await getCustomConfig({ name, id: contact.id, roomName: '', roomId: '', room: false, type: 'tts' })
@@ -334,6 +352,7 @@ async function contactSay(contact: any, msg: any, _isRoom = false) {
         voice: result.botConfig.voice,
         token: result.botConfig.token,
         proxyPass: result.botConfig.proxyPass,
+        protocol,
         ...msg
       }
     }
@@ -395,17 +414,26 @@ async function contactSay(contact: any, msg: any, _isRoom = false) {
       })
       await contact.say(miniProgram)
     } else if (msg.type == 8) {
-      const data = await gettts(msg)
-      if (data.voiceLength > 60 * 1000) {
+      if ( protocol == 'PuppetWechat4u') {
         await contact.say(msg.content)
-      } else {
+        const data = await gettts(msg)
         const fileBox = FileBox.fromBase64(data.base, data.name);
-        fileBox.mimeType = "audio/silk";
-        fileBox.metadata = {
-          voiceLength: data.voiceLength,
-        };
+        fileBox.mimeType = "audio/mp3";
         await contact.say(fileBox)
+      } else {
+        const data = await gettts(msg)
+        if (data.voiceLength > 60 * 1000) {
+          await contact.say(msg.content)
+        } else {
+          const fileBox = FileBox.fromBase64(data.base, data.name);
+          fileBox.mimeType = "audio/silk";
+          fileBox.metadata = {
+            voiceLength: data.voiceLength,
+          };
+          await contact.say(fileBox)
+        }
       }
+      
       
     }
   } catch (e) {
