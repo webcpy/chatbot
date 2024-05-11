@@ -55,7 +55,6 @@ async function handleFriendText(content: string, contact: any, name: any, that: 
       for (let reply of gpt4vReplys) {
         await contactSay.call(that, contact, {
           ...reply,
-          textToSil: true
         })
       }
       return
@@ -66,7 +65,6 @@ async function handleFriendText(content: string, contact: any, name: any, that: 
       await delay(1000)
       await contactSay.call(that, contact, {
         ...reply,
-        textToSil: true
       })
     }
   }

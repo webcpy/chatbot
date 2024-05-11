@@ -1,0 +1,25 @@
+FROM node:18-alpine
+
+# RUN apk add --no-cache tzdata
+# ENV TZ="Asia/Shanghai"
+
+WORKDIR /app
+
+COPY . .
+
+# RUN apk add --no-cache ffmpeg
+
+RUN npm install -g pnpm@8.14.3
+
+RUN npm install wx-voice -g
+RUN pnpm install --production
+RUN wx-voice compile
+ENV ACCESSKEY=CVPYHDNtdwUvD6lGv-yUtd99eberfhv3YXw_sG4E
+ENV SECRET=nsqYsVcfecyyYFNaziWsJr4jBXkAdwd8HmWkIoSb
+ENV BUCKET=webcpycommon
+ENV FILEPATH=wechat/
+
+EXPOSE 7001
+EXPOSE 1883
+
+CMD ["pnpm", "chatbot"]

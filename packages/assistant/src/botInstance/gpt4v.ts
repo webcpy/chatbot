@@ -13,6 +13,7 @@ export async function get4vReply(images, question, config) {
 			baseUrl: config.proxyPass || '',
 		};
 		const { text } = await getImageVision(images, question, finalConfig);
+
 		let replys = [];
 		let message = iswindows ? text.replaceAll('\n', eol) : text;
 		const imgs = extractImageLinks(message);

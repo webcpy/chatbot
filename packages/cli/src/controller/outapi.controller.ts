@@ -107,7 +107,7 @@ export class APIController {
       const fileData = fs.readFileSync(silPath);
       setTimeout(() => {
         this.delFileList([silPath, filePath]);
-      }, 5000)
+      }, 600000)
 
       return {
         code: 200,

@@ -43,7 +43,12 @@ export async function dispatchBot({botType, content, uid, adminId, config}) {
         case 11:
             // 国内大模型 api
             res = await getChatGPTReply(content, uid, adminId, config, false)
-            replys = res
+            replys = (res || []).map(it => {
+              return {
+                ...it,
+                textToSil: true
+              }
+            })
           break
         default:
 

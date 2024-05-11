@@ -2,16 +2,13 @@ ARG NODE_VERSION=18
 
 FROM node:${NODE_VERSION}-alpine as builder
 
-RUN apk add --no-cache ffmpeg tini
+RUN apk add --no-cache tzdata
+ENV TZ=Asia/Shanghai
+
+RUN apk add --no-cache ffmpeg tini 
 
 COPY .npmrc /usr/local/etc/npmrc
 RUN npm install -g pnpm@8.14.3
-
-
-WORKDIR /tmp
-COPY package.json ./
-
-RUN corepack enable && corepack prepare --activate
 
 # Cleanup
 RUN	rm -rf /lib/apk/db /var/cache/apk/ /tmp/* /root/.npm /root/.cache/node /opt/yarn*
@@ -22,3 +19,4 @@ COPY --from=builder / /
 
 WORKDIR /home/node
 EXPOSE 7001/tcp
+EXPOSE 1883/tcp

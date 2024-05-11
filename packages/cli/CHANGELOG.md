@@ -1,5 +1,11 @@
 # @chat-bot/cli
 
+## 3.2.0
+
+### Minor Changes
+
+- name2
+
 ## 3.1.0
 
 ### Minor Changes

@@ -357,7 +357,13 @@ async function customChat({ msg, name, id, isMention, room, roomId, roomName }: 
                 adminId: finalConfig.id,
                 config: finalConfig.botConfig
               })
-              if (msgArr.length) return msgArr
+              if (msgArr.length) {
+                return msgArr.map(it => {
+                  return {
+                    ...it,
+                  }
+                })
+              }
               log.fail('自定义回复获取内容失败，启用全局配置')
               return []
             }
@@ -368,7 +374,7 @@ async function customChat({ msg, name, id, isMention, room, roomId, roomName }: 
           if ((isRoom && finalConfig.needAt === 1 && isMention) || isRoom && !finalConfig.needAt || !isRoom) {
             return finalConfig.defaultReply ? [{ type: 1, content: finalConfig.defaultReply }] : [{
               type: 1,
-              content: ''
+              content: '',
             }]
           }
           return []

@@ -209,6 +209,23 @@ async function roomSay(room: any, contact: any, msg: any) {
   // const config: any = await Container.get(BaseConfig).getAllConfig({
   //   userId: configEnv.get('chatbot.userId')
   // })
+
+  const roomName = await room.topic()
+  let result: any = await getCustomConfig({ name: '', id: '', roomName, roomId: room.id, room: true, type: 'tts' })
+
+  let noTagContent = (msg.content || '').replace(/\s/g, '')
+  if (result?.tts && get(result, 'botConfig.robotType', '') == 11 && !!msg.textToSil) {
+    if ( noTagContent.length < 280 ) {
+      msg.type = 8
+      msg = {
+        voice: result.botConfig.voice,
+        token: result.botConfig.token,
+        proxyPass: result.botConfig.proxyPass,
+        ...msg
+      }
+    }
+  }
+
   if (msg.materialId) {
     const res = await getMaterial(msg.materialId)
     if (res.materialId) {
@@ -262,14 +279,30 @@ async function roomSay(room: any, contact: any, msg: any) {
         username: msg.username || ''
       })
       await room.say(miniProgram)
-    } else if (msg.type == 8 && msg.url && msg.voiceLength) {
-      const fileBox = FileBox.fromUrl(msg.url);
-      fileBox.mimeType = "audio/silk";
-      // fileBox.mediaType = "audio/silk";
-      fileBox.metadata = {
-        voiceLength: msg.voiceLength,
-      };
-      await room.say(fileBox)
+    } else if (msg.type == 8) {
+      try {
+        const data = await gettts(msg)
+        if (data.voiceLength > 60 * 1000) {
+          await room.say(msg.content)
+        } else {
+          const fileBox = FileBox.fromBase64(data.base, data.name);
+          fileBox.mimeType = "audio/silk";
+          fileBox.metadata = {
+            voiceLength: data.voiceLength,
+          };
+          await room.say(fileBox)
+        }
+      } catch (e) {
+        await room.say(msg.content)
+      }
+      
+      // const fileBox = FileBox.fromUrl(msg.url);
+      // fileBox.mimeType = "audio/silk";
+      // // fileBox.mediaType = "audio/silk";
+      // fileBox.metadata = {
+      //   voiceLength: msg.voiceLength,
+      // };
+      // await room.say(fileBox)
     }
   } catch (e) {
     log.fail(['群回复错误', e])
@@ -293,7 +326,8 @@ async function contactSay(contact: any, msg: any, _isRoom = false) {
   let result: any = await getCustomConfig({ name, id: contact.id, roomName: '', roomId: '', room: false, type: 'tts' })
 
   let noTagContent = (msg.content || '').replace(/\s/g, '')
-  if (result.tts && get(result, 'botConfig.robotType', '') == 11 && !!msg.textToSil) {
+  if (result?.tts && get(result, 'botConfig.robotType', '') == 11 && !!msg.textToSil) {
+
     if ( noTagContent.length < 280 ) {
       msg.type = 8
       msg = {
@@ -312,6 +346,9 @@ async function contactSay(contact: any, msg: any, _isRoom = false) {
       msg = res
     }
   }
+
+  console.log(name, msg)
+
   log.info(['回复内容：', msg.type == 3 ? {
     ...msg,
     url: 'base64'
