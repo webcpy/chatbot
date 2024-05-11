@@ -260,7 +260,7 @@ const schema = reactive<FormSchema[]>([
       span: 18,
       offset: 2
     },
-    value: true,
+    value: false,
     componentProps: {
       on: {
         change(val) {

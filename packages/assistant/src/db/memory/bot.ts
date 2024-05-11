@@ -83,7 +83,7 @@ export class BotConfig {
 	@Column({ default: true })
 	autoAcceptFriend: boolean;
 
-	@Column({ default: true })
+	@Column({ default: false })
 	autoReply: boolean;
 
 	@Column({ default: 0 })

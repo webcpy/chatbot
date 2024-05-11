@@ -74,12 +74,11 @@ export class APIController {
         qrStatus: query.qrStatus,
       });
     } else {
-     const data =  await this.CodeSatus.save({
+      await this.CodeSatus.save({
         userId: this.ctx.state.user.id,
         qrUrl: `http://${this.LocalIp.getLocalIP()}:${config.port}/wechat/create-qr-code?url=` + query.qrUrl,
         qrStatus: query.qrStatus,
       });
-      console.log(data)
     }
     return {
       code: 200,

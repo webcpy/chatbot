@@ -1,5 +1,11 @@
 # @chat-bot/editor-ui
 
+## 2.2.0
+
+### Minor Changes
+
+- name
+
 ## 2.1.0
 
 ### Minor Changes

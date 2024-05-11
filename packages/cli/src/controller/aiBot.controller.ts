@@ -161,7 +161,6 @@ export class Schedule {
 
   @Post('/openApi/gpt/updateConfig', {ignoreGlobalPrefix: true})
   async updateAiBotConfig(@Body() query: any) {
-    console.log(query)
     await this.AiBotCustomchat.update({
       userId: this.ctx.state.user.id,
       id: query.id

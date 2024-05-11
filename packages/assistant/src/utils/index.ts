@@ -347,8 +347,6 @@ async function contactSay(contact: any, msg: any, _isRoom = false) {
     }
   }
 
-  console.log(name, msg)
-
   log.info(['回复内容：', msg.type == 3 ? {
     ...msg,
     url: 'base64'

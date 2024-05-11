@@ -1,7 +1,6 @@
 import request from '@/axios'
 
 export const detailBaseConfig = () => {
-  console.log(3333)
   return request.get({ url: `/wechat/detailBaseConfig` })
 }
 

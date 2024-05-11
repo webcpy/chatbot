@@ -9,7 +9,6 @@ export class Sub1Subscriber implements IMqttSubscriber {
   ctx: Context;
 
   async subscribe() {
-    console.log(this.ctx.message.toString())
     // ...
   }
 }
