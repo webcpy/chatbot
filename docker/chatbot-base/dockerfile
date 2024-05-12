@@ -2,15 +2,13 @@ ARG NODE_VERSION=18
 
 FROM node:${NODE_VERSION}-alpine as builder
 
-RUN apk add --no-cache tzdata
-ENV TZ=Asia/Shanghai
-
 RUN apk add --no-cache ffmpeg
-RUN apk add --no-cache tini
+RUN apk add --update tini tzdata libc-dev
 RUN apk add --no-cache make
 RUN apk add --no-cache gcc
-RUN apk add --no-cache libc-dev
 RUN apk add --no-cache build-base
+
+ENV TZ=Asia/Shanghai
 
 COPY .npmrc /usr/local/etc/npmrc
 RUN npm install -g pnpm@8.14.3

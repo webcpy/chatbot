@@ -1,5 +1,5 @@
 ARG NODE_VERSION=18
-FROM webcpy1234/chatbot-base:0.2
+FROM webcpy1234/chatbot-base:0.4
 
 USER root
 
@@ -9,7 +9,7 @@ RUN set -eux; \
     npm config set registry https://registry.npmmirror.com/ && \
     npm install -g wx-voice && \
 	wx-voice compile && \
-	npm install -g --omit=dev @chat-bot/cli@3.3.1 --ignore-scripts && \
+	npm install -g --omit=dev @chat-bot/cli@3.3.2 --ignore-scripts && \
 	npm rebuild --prefix=/usr/local/lib/node_modules/@chat-bot/cli sqlite3 && \
 	rm -rf /usr/local/lib/node_modules/@chat-bot/cli/node_modules/@chat-bot/editor-ui/node_modules && \
 	rm -rf /root/.npm

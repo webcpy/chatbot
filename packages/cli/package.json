@@ -1,6 +1,6 @@
 {
   "name": "@chat-bot/cli",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "description": "",
   "bin": {
     "chatbot": "./bin/chatbot"

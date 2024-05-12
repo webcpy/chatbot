@@ -45,7 +45,9 @@ async function onScan(qrcode: any, status: any) {
       //@ts-ignore
       throttle(setQrCode(qrcode, status), 15000)
     }
-    const qrImgUrl = ['http://192.168.0.101:7001/wechat/create-qr-code?url=', encodeURIComponent(qrcode)].join('')
+    const CHATBOT_API = config.get('api.chatbot')
+
+    const qrImgUrl = [CHATBOT_API.replace(/openApi/, '') + 'wechat/create-qr-code?url=', encodeURIComponent(qrcode)].join('')
     log.success(qrImgUrl)
   } catch (e) {
     log.fail('二维码推送报错')

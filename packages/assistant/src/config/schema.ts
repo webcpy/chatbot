@@ -136,7 +136,7 @@ export const schema = {
     version: {
       doc: '版本号',
       format: String,
-      default: '0.0.1',
+      default: '1.0.0',
       env: 'BOT_VERSION'
     },
     userId: {
@@ -150,7 +150,7 @@ export const schema = {
     chatbot: {
       doc: 'CHATBO_后台地址',
       format: String,
-      default: 'http://127.0.0.1:7001/openApi',
+      default: 'https://chatbot.webcpy.cn/openApi',
       env: 'CHATBOT_API'
     },
     txApi: {
