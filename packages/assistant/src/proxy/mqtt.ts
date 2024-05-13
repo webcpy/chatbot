@@ -91,7 +91,7 @@ async function initMqtt(that: any) {
     if (userId) {
       const config = await getMqttConfig()
       const { port, username, password } = config
-      const host = '154.201.80.127'
+      const host = globalConfig.get('api.mqtt')
       if(!mqttclient) {
         mqttclient = host
           ? mqtt.connect(`mqtt://${host}:${port}`, {

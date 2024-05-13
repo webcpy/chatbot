@@ -151,7 +151,13 @@ export const schema = {
       doc: 'CHATBO_后台地址',
       format: String,
       default: 'https://chatbot.webcpy.cn/openApi',
-      env: 'CHATBOT_API'
+      env: 'CHATBOT_API_SERVER'
+    },
+    mqtt: {
+      doc: 'mqtt服务地址',
+      format: String,
+      default: '154.201.80.127',
+      env: 'MQTT_SERVER'
     },
     txApi: {
       doc: '天行API',

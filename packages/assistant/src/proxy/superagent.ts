@@ -3,9 +3,8 @@ import { BaseConfig } from '../db/repositories/BaseConfig'
 import config from '../config/index'
 import axios from 'axios'
 import { Container } from 'typedi'
-import { data } from 'cheerio/lib/api/attributes'
 
-const CHATBOT_API = config.get('api.chatbot')
+const CHATBOT_API_SERVER = config.get('api.chatbot')
 const TX_API = config.get('api.txApi')
 const NEW_TX_API = config.get('api.newTxApi')
 
@@ -196,14 +195,14 @@ async function aiBotReq(option: any) {
   let params = option.params;
   if (option.method === 'POST') {
     return post({
-      url: CHATBOT_API + option.url,
+      url: CHATBOT_API_SERVER + option.url,
       params,
       contentType: 'application/json;charset=utf-8',
       platform: option.platform || 'aibot'
     })
   } else {
     return get({
-      url: CHATBOT_API + option.url,
+      url: CHATBOT_API_SERVER + option.url,
       params,
       contentType: option.contentType,
       platform: option.platform || 'aibot'
