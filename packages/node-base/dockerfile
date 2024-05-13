@@ -1,0 +1,24 @@
+# 使用Node.js作为基础镜像
+FROM node:18-alpine
+
+
+RUN apk add --update tzdata tini
+
+ENV TZ=Asia/Shanghai
+
+WORKDIR /home/app
+
+COPY . .
+
+RUN npm config set registry https://registry.npmmirror.com/
+
+RUN npm i -g pnpm
+
+# 安装应用程序的依赖
+RUN pnpm install --production
+RUN pnpm install sqlite3 --save
+
+
+# 启动应用程序
+ENTRYPOINT ["tini", "--"]
+CMD ["node", "./dist/index.js"]

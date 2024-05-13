@@ -1,5 +1,11 @@
 # @chat-bot/assistant
 
+## 2.0.5
+
+### Patch Changes
+
+- name
+
 ## 2.0.4
 
 ### Patch Changes

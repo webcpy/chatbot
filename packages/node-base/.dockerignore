@@ -1,0 +1,14 @@
+src
+node_modules
+.vscode
+.eslintrc.js
+.prettierrc.js
+.env
+.env.test
+.env.development
+.env.production
+.eslintcache
+.yarn-integrity
+yarn.lock
+tsconfig.build.json
+tsconfig.json

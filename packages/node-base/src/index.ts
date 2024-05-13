@@ -1,7 +1,6 @@
 import { WechatyBuilder } from 'wechaty';
 import { ChatbotPugin, config, log } from '@chat-bot/assistant';
 
-export function initWechat() {
 	const name = 'chatbot';
 	let bot: any = '';
 	let padLocalToken = config.get('token.local'); // 如果申请了ipadlocal的token,可以直接填入
@@ -43,4 +42,3 @@ export function initWechat() {
 		}),
 	);
 	bot.start().catch((e: any) => log.fail(e));
-}
