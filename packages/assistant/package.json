@@ -1,6 +1,6 @@
 {
 	"name": "@chat-bot/assistant",
-	"version": "2.0.5",
+	"version": "2.0.6",
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
@@ -33,10 +33,10 @@
 		"prettier": "^2.0.5"
 	},
 	"dependencies": {
+		"@chat-bot/core": "workspace:*",
 		"@types/node-fetch": "^2.6.11",
 		"@types/node-schedule": "^2.1.6",
 		"axios": "^1.6.6",
-		"@chat-bot/core": "workspace:*",
 		"baidu-aip-sdk": "^4.16.15",
 		"chalk": "4.1.0",
 		"chatgpt": "^5.2.5",
@@ -56,6 +56,7 @@
 		"reflect-metadata": "^0.2.1",
 		"rss-parser": "^3.13.0",
 		"sharp": "^0.33.2",
+		"sqlite3": "^5.1.7",
 		"superagent": "^5.3.1",
 		"typedi": "^0.10.0",
 		"typeorm": "^0.3.20",

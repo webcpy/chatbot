@@ -1,8 +1,9 @@
 {
-  "name": "@chat-bot/node-base",
-  "version": "2.0.5",
+  "name": "@chat-bot/wechat",
+  "version": "0.0.2",
   "description": "",
   "main": "./dist/index.js",
+  "bin": "./bin/chatbot-wechat.js",
   "scripts": {
     "clean": "rimraf dist .turbo",
     "dev": "pnpm run watch",
@@ -15,6 +16,10 @@
   "files": [
     "dist"
   ],
+  "oclif": {
+    "commands": "./dist/command",
+    "bin": "chatbot-wechat"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -23,6 +28,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@oclif/core": "^3",
     "@chat-bot/assistant": "workspace:*",
     "wechaty": "^1.20.2"
   }
