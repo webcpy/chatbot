@@ -3,7 +3,9 @@
   "version": "0.0.2",
   "description": "",
   "main": "./dist/index.js",
-  "bin": "./bin/chatbot-wechat.js",
+  "bin": {
+    "bot": "./bin/bot"
+  },
   "scripts": {
     "clean": "rimraf dist .turbo",
     "dev": "pnpm run watch",
@@ -14,11 +16,24 @@
     "build": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "/theme.json"
   ],
   "oclif": {
-    "commands": "./dist/command",
-    "bin": "chatbot-wechat"
+    "bin": "bot",
+    "dirname": "bot",
+    "theme": "./theme.json",
+    "commands": "./dist/commands/",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "config": {
+        "description": "初始化配置"
+      }
+    }
   },
   "keywords": [],
   "author": "",
@@ -28,8 +43,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@oclif/core": "^3",
     "@chat-bot/assistant": "workspace:*",
+    "@oclif/core": "^3.26.6",
+    "@oclif/plugin-autocomplete": "^3.0.18",
+    "@oclif/plugin-help": "^6",
+    "@oclif/plugin-not-found": "^3.1.9",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^8.2.6",
+    "semver": "^7.5.4",
     "wechaty": "^1.20.2"
   }
 }

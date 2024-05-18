@@ -36,5 +36,5 @@ inspect.defaultOptions.customInspect = false;
 
 (async () => {
 	const oclif = await import('@oclif/core');
-	await oclif.execute({});
+	await oclif.execute({dir: __dirname});
 })();
