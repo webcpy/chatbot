@@ -461,11 +461,15 @@ const schema = reactive<FormSchema[]>([
     value: 12,
     colProps: {
       span: 4
-    },
-    formItemProps: {
-      slots: {
-        label: toolLabel('开启语音回复', '海螺AI')
-      }
+    }
+  },
+  {
+    field: 'openWhisper',
+    label: '语音识别',
+    component: 'Switch',
+    value: 12,
+    colProps: {
+      span: 4
     }
   },
   {
@@ -478,7 +482,7 @@ const schema = reactive<FormSchema[]>([
     },
     formItemProps: {
       slots: {
-        label: toolLabel('发音人', '海螺AI')
+        label: toolLabel('发音人')
       }
     }
   },

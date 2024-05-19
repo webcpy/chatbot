@@ -7,7 +7,7 @@ import { Container } from 'typedi'
 import { BaseConfig } from '../db/repositories/BaseConfig'
 import { Rooms } from '../db/repositories/room'
 import globalConfig from '../config'
-
+import { get } from 'lodash'
 import { getPuppetEol } from '../const/puppet-type'
 import { getGpt4vChat } from '../service/gpt4vService'
 import { getVoiceText, getAudioText } from '../proxy/multimodal'
@@ -102,7 +102,11 @@ async function dispatchFriendFilterByMsgType(that: any, msg: any) {
         let finalConfig: any = await getCustomConfig({ name, id: contact.id, roomName: '', roomId: '', room: false, type: 'openWhisper' })
         if (finalConfig) {
           const audioFileBox: any = await msg.toFileBox()
-          const text = await getAudioText(audioFileBox)
+          const form = {
+            proxyPass: get(finalConfig, 'botConfig.proxyPass', ''),
+            token: get(finalConfig, 'botConfig.token', ''),
+          }
+          const text = await getAudioText(audioFileBox, form)
           log.success('语音解析结果', text)
           const keyword = finalConfig.botConfig.whisperConfig?.keywords?.length ? finalConfig.botConfig?.whisperConfig.keywords?.find((item: any) => text.includes(item)) : true;
           const isIgnore = checkIgnore(content.trim(), globalConfig.get('chatbot.ignoreMessages'))
@@ -133,11 +137,11 @@ async function dispatchFriendFilterByMsgType(that: any, msg: any) {
             log.success('语音解析结果没有匹配到需要回复的关键词')
           }
         } else {
-          const audioFileBox: any = await msg.toFileBox()
-          log.success(`发消息人${name}:语音解析中`)
-          const text = await getAudioText(audioFileBox)
-          log.success(`发消息人${name}:语音解析成功`, text)
-          await handleFriendText(text, contact, name, that)
+          // const audioFileBox: any = await msg.toFileBox()
+          // log.success(`发消息人${name}:语音解析中`)
+          // const text = await getAudioText(audioFileBox)
+          // log.success(`发消息人${name}:语音解析成功`, text)
+          // await handleFriendText(text, contact, name, that)
         }
         break
       case that.Message.Type.Emoticon:
@@ -332,7 +336,12 @@ async function dispatchRoomFilterByMsgType(that: any, room: any, msg: any) {
         let finalConfig: any = await getCustomConfig({ name: contactName, id: contactId, roomName, roomId: room.id, room, type: 'openWhisper' })
         if (finalConfig) {
           const audioFileBox = await msg.toFileBox()
-          const text = await getVoiceText(audioFileBox, finalConfig.botConfig.whisperConfig)
+          const form = {
+            proxyPass: get(finalConfig, 'botConfig.proxyPass', ''),
+            token: get(finalConfig, 'botConfig.token', ''),
+          }
+          const text =  await getAudioText(audioFileBox, form)
+          // const text = await getVoiceText(audioFileBox, finalConfig.botConfig.whisperConfig)
           log.success(['语音解析结果', text])
           const keyword = finalConfig.botConfig.whisperConfig?.keywords?.length ? finalConfig.botConfig?.whisperConfig?.keywords?.find((item: any) => text.includes(item)) : true;
           const isIgnore = checkIgnore(content.trim(), globalConfig.get('chatbot.ignoreMessages'))

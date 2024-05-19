@@ -48,13 +48,12 @@ export async function getVoiceText(file: any, aiConfig?: any) {
  * @param aiConfig
  * @returns {Promise<*|string>}
  */
-export async function getAudioText(file: any) {
+export async function getAudioText(file: any, form: any = {}) {
   try {
     const apiKey = globalConfig.get('chatbot.apiKey')
 
     // const audioTextApi = globalConfig.get('api.audioTextApi')
     const base64 = await file.toBuffer()
-
     const buffer: any = Buffer.from(base64, 'base64')
     const formData = new FormData();
     formData.append('file', buffer, { contentType: file.mediaType, filename: file.name });
@@ -70,6 +69,7 @@ export async function getAudioText(file: any) {
         // Authorization: `Bearer ${apiKey}`,
       },
       data: formData,
+      params: form
     };
 
     const result = await axios.request(config)

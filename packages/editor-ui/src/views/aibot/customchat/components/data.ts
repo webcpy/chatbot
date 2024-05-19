@@ -24,9 +24,9 @@ export const gptModal = [
 })
 
 export const botType = {
-  '0': ['open4v', 'showQuestion', 'model', 'showDownloadUrl', 'tts', 'proxyPass', 'isAiAgent', 'debug'],
-  '6': ['showQuestion', 'debug', 'model', 'open4v', 'proxyPass'],
+  '0': ['open4v', 'showQuestion', 'model', 'showDownloadUrl', 'tts', 'proxyPass', 'openWhisper', 'voice', 'isAiAgent', 'debug'],
+  '6': ['showQuestion', 'debug', 'voice', 'model', 'openWhisper', 'tts', 'open4v', 'proxyPass'],
   '9': ['showQuestion', 'debug'],
   '8': ['open4v', 'showQuestion', 'showDownloadUrl', 'isAiAgent', 'debug'],
-  '11': ['showQuestion', 'debug', 'open4v', 'tts', 'proxyPass', 'showDownloadUrl']
+  '11': ['showQuestion', 'debug', 'voice', 'open4v', 'openWhisper', 'tts', 'proxyPass', 'showDownloadUrl']
 }

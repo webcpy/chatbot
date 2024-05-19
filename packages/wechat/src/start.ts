@@ -10,6 +10,11 @@ export function initWechat(option: any) {
 		padLocalToken = option.PAD_LOCAL_TOKEN; // 如果申请了ipadlocal的token,可以直接填入
 		config.set('token.local', option.PAD_LOCAL_TOKEN)
 	}
+	if (option.SERVER_TYPE == 'custom') {
+		config.set('api.chatbot', option.CHATBOT_API_SERVER)
+		config.set('api.mqtt', option.MQTT_SERVER)
+
+	}
 	if (option.TYPE == 'wechatyService') {
 		config.set('token.work', option.WORK_PRO_TOKEN)
 		workProToken = option.WORK_PRO_TOKEN; // 如果申请了企业微信的token 可以直接填入

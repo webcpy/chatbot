@@ -1,4 +1,4 @@
-import { Inject, Controller, Post, Files, Config, Body } from '@midwayjs/core';
+import { Inject, Controller, Post, Files, Config, Body, Query } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { ApiExcludeController } from '@midwayjs/swagger';
 import { File } from '../entity/file.entity';
@@ -10,7 +10,6 @@ import { HttpService } from '@midwayjs/axios';
 import FormData from 'form-data';
 import fs from 'fs';
 import path from 'path';
-import { traditionToSimple } from 'chinese-simple2traditional';
 import { get } from 'lodash';
 
 @ApiExcludeController()
@@ -39,7 +38,7 @@ export class APIController {
     return new Promise((resolve, reject) => {
       voice.on('error', err => reject(err));
 
-      voice.decode(inputFilePath, outputFilePath, { format: 'mp3' }, file =>
+      voice.decode(inputFilePath, outputFilePath, { format: 'wav' }, file =>
         resolve(file)
       );
     });
@@ -134,46 +133,37 @@ export class APIController {
   }
 
   @Post('/audio/text')
-  async audioToText(@Files() files: any) {
-    if (!this.voiceApi) return;
+  async audioToText(@Files() files: any, @Query() params: any){
     try {
       const inputFilePath = files[0].data;
       const filePath: any = await this.convertAudio(
         inputFilePath,
-        this.filePath + '/' + uuidv4() + '.mp3'
+        this.filePath + '/' + uuidv4() + '.wav'
       );
-      const fileData = fs.createReadStream(filePath);
       const formData = new FormData();
+      formData.append('file', fs.createReadStream(filePath));
+      formData.append('model', 'whisper-1');
+      // formData.append('response_format', 'json');
 
-      formData.append('audio_file', fileData, {
-        filename: path.basename(filePath),
-        contentType: 'audio/mp3',
-      });
       const data: any = await this.httpService.postForm(
-        this.voiceApi,
+        params.proxyPass + '/audio/transcriptions',
         formData,
         {
-          params: {
-            encode: true,
-            task: 'transcribe',
-            word_timestamps: false,
-            output: 'json',
-          },
           headers: {
             accept: 'application/json',
+            Authorization: `Bearer ${params.token}`,
             ...formData.getHeaders(), // 设置请求头为 FormData 对象的头部信息
             // 如果后端需要其他自定义的请求头，可以在这里添加
           },
         }
       );
       const text = get(data, 'data.text', '');
-      this.delFileList([inputFilePath, filePath]);
+      // this.delFileList([inputFilePath, filePath]);
       return {
         code: 200,
-        data: traditionToSimple(text),
+        data: text
       };
     } catch (ex) {
-      console.log(ex);
       throw new Error(ex);
     }
   }

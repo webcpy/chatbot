@@ -124,29 +124,9 @@ getAllApi()
                 class="w-70px h-70px rounded-[50%] mr-20px"
               />
               <div>
-                <div class="text-20px"> 早安，Archer，祝你开心每一天! </div>
-                <div class="mt-10px text-14px text-gray-500"> 20℃ - 32℃！ </div>
-              </div>
-            </div>
-          </ElCol>
-          <ElCol :xl="12" :lg="12" :md="12" :sm="24" :xs="24">
-            <div class="flex h-70px items-center justify-end lt-sm:mt-20px">
-              <div class="px-8px text-right">
-                <div class="text-14px text-gray-400 mb-20px">33333</div>
-                <!-- <CountTo
-                  class="text-20px"
-                  :start-val="0"
-                  :end-val="totalSate.project"
-                  :duration="2600"
-                /> -->
-              </div>
-              <ElDivider direction="vertical" />
-              <div class="px-8px text-right">
-                <div class="text-14px text-gray-400 mb-20px">2222</div>
-              </div>
-              <ElDivider direction="vertical" border-style="dashed" />
-              <div class="px-8px text-right">
-                <div class="text-14px text-gray-400 mb-20px">1111</div>
+                <div class="text-20px">
+                  <a target="_blank" href="https://webcpy.notion.site/2ab3d969ec0141a88aa347846facc87a">使用说明</a>
+                </div>
               </div>
             </div>
           </ElCol>
@@ -272,7 +252,7 @@ getAllApi()
         </template>
         <ElSkeleton :loading="loading" animated>
           <div class="text-sm text-[#666]">
-            《微语智能管家》是一款智能机器人配置管理平台，能够一键接入ChatGPT对话系统，无缝适配Dify和FastGPT知识库！支持群组和个人，用户可根据需求定义不同的角色，享有丰富多样的技能。该平台同时支持企微、个微、公众号、5G消息、WhatsApp等通讯协议。
+            《微语智能管家》是一款智能机器人配置管理平台，能够一键接入ChatGPT对话系统，无缝适配Dify和FastGPT知识库！支持群组和个人，用户可根据需求定义不同的角色，享有丰富多样的技能。该平台同时支持企微、个微、公众号、等通讯协议。
           </div>
           <div class="text-[#999] text-sm mt-4">
             声明：平台不存储任何敏感信息，也不记录聊天记录，只存储好友昵称和群名等基础的信息，不会造成任何信息泄露，请放心使用

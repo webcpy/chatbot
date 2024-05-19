@@ -5,7 +5,7 @@ import { join } from 'path';
 export abstract class BaseCommand extends Command {
   static enableJsonFlag = true
 
-  protected setting = { 'CHATBOT_API_KEY': '', 'WORK_PRO_TOKEN': '', TYPE: 'wechaty4u', 'PAD_LOCAL_TOKEN': '' }
+  protected setting = { 'CHATBOT_API_KEY': '', 'WORK_PRO_TOKEN': '', 'MQTT_SERVER': '','CHATBOT_API_SERVER': '', 'SERVER_TYPE': 'default', TYPE: 'wechaty4u', 'PAD_LOCAL_TOKEN': '' }
 
   private settingsFilePath = join(this.config.configDir, 'config.json')
 
@@ -25,8 +25,8 @@ export abstract class BaseCommand extends Command {
       const content = readFileSync(this.settingsFilePath, 'utf8');
 
       const settings = JSON.parse(content);
-      const { CHATBOT_API_KEY, WORK_PRO_TOKEN, PAD_LOCAL_TOKEN, TYPE } = settings;
-      return { CHATBOT_API_KEY, WORK_PRO_TOKEN, PAD_LOCAL_TOKEN, TYPE };
+      const { CHATBOT_API_KEY, WORK_PRO_TOKEN, PAD_LOCAL_TOKEN, TYPE, CHATBOT_API_SERVER, SERVER_TYPE, MQTT_SERVER} = settings;
+      return { CHATBOT_API_KEY, WORK_PRO_TOKEN, PAD_LOCAL_TOKEN, TYPE, CHATBOT_API_SERVER, SERVER_TYPE, MQTT_SERVER };
     }
     mkdirSync(this.config.configDir, { recursive: true });
     this.save(this.setting);

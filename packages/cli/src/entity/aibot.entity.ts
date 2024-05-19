@@ -99,6 +99,11 @@ export class AiBotCustomchat {
   @Column({ default: false})
   tts: Boolean;
 
+  @Column({ default: false})
+  openWhisper: Boolean;
+
+
+
   @Column({ nullable: true })
   voice: string;
 

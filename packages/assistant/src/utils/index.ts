@@ -214,12 +214,13 @@ async function roomSay(room: any, contact: any, msg: any) {
   const Puppet = Container.get(PuppetConfig)
   const puppetInfo: any = await Puppet.getPuppetInfo()
   const protocol = get(puppetInfo, 'puppetType', 'PuppetWechat4u')
+  const typeList = ['6', '11'];
 
   const roomName = await room.topic()
   let result: any = await getCustomConfig({ name: '', id: '', roomName, roomId: room.id, room: true, type: 'tts' })
 
   let noTagContent = (msg.content || '').replace(/\s/g, '')
-  if (result?.tts && get(result, 'botConfig.robotType', '') == 11 && !!msg.textToSil) {
+  if (result?.tts && typeList.includes(get(result, 'botConfig.robotType', '') + '') && !!msg.textToSil) {
     if ( noTagContent.length < 280 ) {
       msg.type = 8
       msg = {
@@ -288,11 +289,11 @@ async function roomSay(room: any, contact: any, msg: any) {
     } else if (msg.type == 8) {
       try {
         if ( protocol == 'PuppetWechat4u') {
-          await contact.say(msg.content)
+          await room.say(msg.content)
           const data = await gettts(msg)
           const fileBox = FileBox.fromBase64(data.base, data.name);
           fileBox.mimeType = "audio/mp3";
-          await contact.say(fileBox)
+          await room.say(fileBox)
         } else {
           const data = await gettts(msg)
         if (data.voiceLength > 60 * 1000) {
@@ -344,7 +345,8 @@ async function contactSay(contact: any, msg: any, _isRoom = false) {
   let result: any = await getCustomConfig({ name, id: contact.id, roomName: '', roomId: '', room: false, type: 'tts' })
 
   let noTagContent = (msg.content || '').replace(/\s/g, '')
-  if (result?.tts && get(result, 'botConfig.robotType', '') == 11 && !!msg.textToSil) {
+  const typeList = ['6', '11'];
+  if (result?.tts && typeList.includes(get(result, 'botConfig.robotType', '') + '') && !!msg.textToSil) {
 
     if ( noTagContent.length < 280 ) {
       msg.type = 8

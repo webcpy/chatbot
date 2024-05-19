@@ -35,6 +35,8 @@ async function onScan(qrcode: any, status: any) {
     await getVerifyCode();
     getQrcodeKey(qrcode)
     Qrterminal.generate(qrcode)
+    const CHATBOT_API_SERVER = config.get('api.chatbot')
+
     log.success([`扫描状态:`, status])
     if (scanTime >= scanTimes) {
 
@@ -43,15 +45,16 @@ async function onScan(qrcode: any, status: any) {
       scanTime++
       // setQrCode(qrcode, status)
       //@ts-ignore
-      throttle(setQrCode(qrcode, status), 15000)
+      const qrImgUrl = [CHATBOT_API_SERVER.replace(/openApi/, '') + 'wechat/create-qr-code?url=', encodeURIComponent(qrcode)].join('')
+      
+      throttle(setQrCode(qrImgUrl, status), 15000)
     }
-    const CHATBOT_API_SERVER = config.get('api.chatbot')
 
     const qrImgUrl = [CHATBOT_API_SERVER.replace(/openApi/, '') + 'wechat/create-qr-code?url=', encodeURIComponent(qrcode)].join('')
     log.success(qrImgUrl)
   } catch (e) {
+    console.log(e)
     log.fail('二维码推送报错')
-    log.success(e)
   }
 }
 export default onScan

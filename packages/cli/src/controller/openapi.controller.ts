@@ -8,7 +8,6 @@ import { CodeSatus } from '../entity/codeSatus.entity';
 import { InjectEntityModel } from '@midwayjs/typeorm';
 import { Repository } from 'typeorm';
 import { LocalIp } from '../service/local.service';
-import { config } from '../utils/config';
 import {omitBy, isNull} from 'lodash';
 import { Material } from '../entity/material.entity';
 
@@ -70,13 +69,13 @@ export class APIController {
       await this.CodeSatus.update({
         userId: this.ctx.state.user.id
       }, {
-        qrUrl: `http://${this.LocalIp.getLocalIP()}:${config.port}/wechat/create-qr-code?url=` + query.qrUrl,
+        qrUrl: query.qrUrl,
         qrStatus: query.qrStatus,
       });
     } else {
       await this.CodeSatus.save({
         userId: this.ctx.state.user.id,
-        qrUrl: `http://${this.LocalIp.getLocalIP()}:${config.port}/wechat/create-qr-code?url=` + query.qrUrl,
+        qrUrl:  query.qrUrl,
         qrStatus: query.qrStatus,
       });
     }

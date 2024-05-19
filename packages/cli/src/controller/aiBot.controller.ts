@@ -266,6 +266,7 @@ export class Schedule {
             ...data,
             keywordSystemMessages: this.findAllProtMap(data.keywordSystemMessages, allPromotMap),
             botConfig: {
+              "openWhisper": item.openWhisper,
               "tts": item.tts,
               "voice": item.voice,
               "debug": item.debug,
