@@ -1,5 +1,16 @@
 # @chat-bot/node-base
 
+## 0.1.0
+
+### Minor Changes
+
+- name
+
+### Patch Changes
+
+- Updated dependencies
+  - @chat-bot/assistant@2.1.0
+
 ## 0.0.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chat-bot/editor-ui",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "聊天机器人",
   "author": "Archer <1728252512@qq.com>",
   "dependencies": {

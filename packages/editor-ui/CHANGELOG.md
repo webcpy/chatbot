@@ -1,5 +1,11 @@
 # @chat-bot/editor-ui
 
+## 2.3.0
+
+### Minor Changes
+
+- name
+
 ## 2.2.2
 
 ### Patch Changes

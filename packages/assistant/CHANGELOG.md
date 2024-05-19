@@ -1,5 +1,16 @@
 # @chat-bot/assistant
 
+## 2.1.0
+
+### Minor Changes
+
+- name
+
+### Patch Changes
+
+- Updated dependencies
+  - @chat-bot/core@3.2.0
+
 ## 2.0.6
 
 ### Patch Changes
