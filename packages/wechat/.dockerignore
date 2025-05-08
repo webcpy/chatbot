@@ -1,4 +1,6 @@
 src
+bin
+theme.json
 node_modules
 .vscode
 .eslintrc.js
